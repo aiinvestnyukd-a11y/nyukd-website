@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">Investment thumbnail</title>
+  <desc id="desc">Abstract AI-led trading dashboard with signal paths and performance bars.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EAF7F7"/>
+      <stop offset="1" stop-color="#FFF4E8"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0E7C7B"/>
+      <stop offset="1" stop-color="#C7641A"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="420" rx="34" fill="url(#bg)"/>
+  <g opacity=".24" stroke="#0A0E1A" stroke-width="1">
+    <path d="M80 74h560M80 144h560M80 214h560M80 284h560M80 354h560"/>
+    <path d="M120 48v324M240 48v324M360 48v324M480 48v324M600 48v324"/>
+  </g>
+  <g fill="#0A0E1A">
+    <rect x="112" y="250" width="54" height="72" rx="12" opacity=".16"/>
+    <rect x="200" y="210" width="54" height="112" rx="12" opacity=".22"/>
+    <rect x="288" y="170" width="54" height="152" rx="12" opacity=".34"/>
+    <rect x="376" y="128" width="54" height="194" rx="12" opacity=".52"/>
+    <rect x="464" y="94" width="54" height="228" rx="12" opacity=".76"/>
+  </g>
+  <path d="M116 250C188 188 244 214 306 158s114-52 174-100" fill="none" stroke="url(#line)" stroke-width="10" stroke-linecap="round"/>
+  <g fill="#0E7C7B">
+    <circle cx="116" cy="250" r="10"/>
+    <circle cx="306" cy="158" r="10"/>
+    <circle cx="480" cy="58" r="10"/>
+  </g>
+  <g transform="translate(538 112)">
+    <rect width="98" height="98" rx="24" fill="#0A0E1A"/>
+    <path d="M28 62V28l42 42V28" fill="none" stroke="#F4F2ED" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="70" cy="70" r="6" fill="#3DD9D6"/>
+  </g>
+</svg>

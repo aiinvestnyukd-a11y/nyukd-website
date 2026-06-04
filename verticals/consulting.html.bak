@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Consulting — AI-led process transformation</title>
+    <meta
+      name="description"
+      content="Consulting helps leaders design AI-led operating models through process diagnostics, workflow redesign, controls, and durable implementation support."
+    />
+    <meta property="og:title" content="Consulting — AI-led process transformation" />
+    <meta
+      property="og:description"
+      content="Diagnostics, redesign, and durable change for operations and back-office teams."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&f[]=jetbrains-mono@400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/app.css" />
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+    <div data-slot="header"></div>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container page-hero__inner">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">NYUKD</a>
+            <span class="sep">/</span>
+            <span>Consulting</span>
+          </nav>
+          <span class="eyebrow">Practice 03 · Live brief</span>
+          <h1 style="margin-top: var(--space-4)">
+            Process transformation for <em style="color: var(--color-primary); font-style: normal;">AI-led operations.</em>
+          </h1>
+          <p class="lede">
+            Consulting helps operations and back-office leaders find friction, redesign the work,
+            and build AI-led operating models with the right controls. The method is practical:
+            understand the process, improve it, then let AI lead the parts of the workflow where
+            it can be measured, governed, and improved.
+          </p>
+          <div style="margin-top: var(--space-8); display: flex; gap: var(--space-3); flex-wrap: wrap;">
+            <a class="btn btn--primary btn--lg" href="mailto:consulting@nyukd.com?subject=Process%20diagnostic%20enquiry"
+              >Request a process diagnostic <span class="arrow">→</span></a
+            >
+            <a class="btn btn--secondary btn--lg" href="#methodology">See how we work</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">About the practice</span>
+              <h2 style="margin-top: var(--space-3)">
+                A practice built around durable change, not slide-deck change.
+              </h2>
+            </div>
+            <p>
+              Most transformations stall in the gap between insight and operating reality.
+              Consulting closes that gap with embedded teams, narrow scope, measurable handover,
+              and AI-led use cases that are tied to real operating metrics.
+            </p>
+          </div>
+
+          <img class="section-visual" src="../assets/thumb-consulting.svg" alt="Abstract process transformation and AI operating model visual" style="margin-bottom: var(--space-8);" />
+
+          <div class="feature-list">
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+              </div>
+              <h3>Diagnostics in weeks, not quarters</h3>
+              <p>
+                A focused fact-base on where time, cost, and quality are leaking. Hypotheses are
+                tested with data and frontline observation, not workshops.
+              </p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+              </div>
+              <h3>AI-led process redesign</h3>
+              <p>
+                Target operating models specified to the level a delivery team can implement,
+                including where AI agents lead, where workflow automation supports them, and where
+                human approvals remain mandatory.
+              </p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+              </div>
+              <h3>Performance management for AI operations</h3>
+              <p>
+                Lightweight metrics, decision logs, quality checks, and a reporting rhythm the
+                line owns. We write the playbook, your team runs it.
+              </p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+              </div>
+              <h3>Capability transfer by design</h3>
+              <p>
+                Every engagement has a named successor inside the client. We are responsible
+                for being unnecessary by the end.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- METHODOLOGY -->
+      <section class="section" id="methodology" style="background: var(--color-surface-offset);">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">How we work</span>
+              <h2 style="margin-top: var(--space-3)">
+                A four-step method, run as one continuous engagement.
+              </h2>
+            </div>
+            <p>
+              We do not separate "diagnostic" from "implementation" with a sales gate in
+              between. The same team carries the work from observation to operating handover.
+            </p>
+          </div>
+          <div class="roadmap" style="grid-template-columns: repeat(4, 1fr)">
+            <article class="phase">
+              <div class="phase__num">Step 01</div>
+              <h3 class="phase__title">Observe</h3>
+              <p class="phase__body">
+                Walk the floor, shadow real work, instrument the data. We don't trust the
+                process map until we've seen the process.
+              </p>
+            </article>
+            <article class="phase">
+              <div class="phase__num">Step 02</div>
+              <h3 class="phase__title">Diagnose</h3>
+              <p class="phase__body">
+                Quantify waste, rework, and unit economics. Identify the two or three changes
+                that will move the metric that matters.
+              </p>
+            </article>
+            <article class="phase">
+              <div class="phase__num">Step 03</div>
+              <h3 class="phase__title">Redesign</h3>
+              <p class="phase__body">
+                Co-design the target operating model with the people who will run it. Identify
+                AI-led use cases, pilot, measure, refine, then scale.
+              </p>
+            </article>
+            <article class="phase">
+              <div class="phase__num">Step 04</div>
+              <h3 class="phase__title">Hand over</h3>
+              <p class="phase__body">
+                Performance management embedded, owners named, dashboards live. We leave the
+                client running, not relying.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CASE STUDIES PLACEHOLDER -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Case studies</span>
+              <h2 style="margin-top: var(--space-3)">
+                The work, with names attached. Coming.
+              </h2>
+            </div>
+            <p>
+              We are publishing two anchor case studies as Phase 02 of the rollout. Both will
+              cite scope, KPIs, and the result — with client permission and signed off
+              numbers.
+            </p>
+          </div>
+          <div class="placeholder-grid">
+            <article class="placeholder-card">
+              <span class="label">Case 01 · Operations</span>
+              <h4>Mid-market BPO — claims processing</h4>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line medium"></div>
+              <div class="skeleton-line short"></div>
+              <p style="font-size: var(--text-xs); color: var(--color-text-faint); margin-top: auto;">
+                Target: ~28% throughput uplift. Publishing under embargo.
+              </p>
+            </article>
+            <article class="placeholder-card">
+              <span class="label">Case 02 · Banking</span>
+              <h4>Retail bank — onboarding redesign</h4>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line medium"></div>
+              <div class="skeleton-line short"></div>
+              <p style="font-size: var(--text-xs); color: var(--color-text-faint); margin-top: auto;">
+                Target: time-to-first-transaction under 24 hours.
+              </p>
+            </article>
+            <article class="placeholder-card">
+              <span class="label">Case 03 · Public sector</span>
+              <h4>Service ministry — citizen process redesign</h4>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line medium"></div>
+              <div class="skeleton-line short"></div>
+              <p style="font-size: var(--text-xs); color: var(--color-text-faint); margin-top: auto;">
+                Subject to disclosure approvals. Briefing available on request.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CREDENTIALS -->
+      <section class="section" style="background: var(--color-surface-offset);">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Credentials</span>
+              <h2 style="margin-top: var(--space-3)">
+                A small senior team. Operating, not narrating.
+              </h2>
+            </div>
+            <p>
+              The Consulting practice is led by practitioners with two decades of process
+              transformation across financial services, BPO, and the public sector. Detailed bios
+              will publish alongside the first case studies.
+            </p>
+          </div>
+          <div class="kpi-strip" style="grid-template-columns: repeat(4, 1fr); margin-top: var(--space-8);">
+            <div class="kpi">
+              <div class="kpi__value tabular">20+ yrs</div>
+              <div class="kpi__label">Senior partner experience</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__value tabular">3</div>
+              <div class="kpi__label">Sectors of operating depth</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__value tabular">100%</div>
+              <div class="kpi__label">Engagements with named handover owner</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__value tabular">≤6 wks</div>
+              <div class="kpi__label">Standard diagnostic cycle</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS PLACEHOLDER -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Client testimonials</span>
+              <h2 style="margin-top: var(--space-3)">
+                Quotes will follow the work, not precede it.
+              </h2>
+            </div>
+            <p>
+              We will publish named client quotes once delivery is signed off. Until then, this
+              space is intentionally empty. Reference calls available on request.
+            </p>
+          </div>
+          <div class="placeholder-grid">
+            <article class="placeholder-card">
+              <span class="label">Reference · Operations COO</span>
+              <h4>Available on request</h4>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line medium"></div>
+            </article>
+            <article class="placeholder-card">
+              <span class="label">Reference · Programme director</span>
+              <h4>Available on request</h4>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line medium"></div>
+            </article>
+            <article class="placeholder-card">
+              <span class="label">Reference · Head of transformation</span>
+              <h4>Available on request</h4>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line medium"></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section section--tight">
+        <div class="container container--default">
+          <div class="waitlist">
+            <div>
+              <span class="eyebrow">Start a conversation</span>
+              <h2 style="margin-top: var(--space-3)">
+                A 30-minute brief is enough to know if we should talk.
+              </h2>
+              <p>
+                Tell us the symptom, the metric you want to move, and your timeline. We will
+                come back within two business days with whether and how we can help.
+              </p>
+            </div>
+            <div>
+              <a class="btn btn--primary btn--lg" href="mailto:consulting@nyukd.com?subject=Process%20diagnostic%20enquiry" style="width: 100%;">
+                Email consulting@nyukd.com <span class="arrow">→</span>
+              </a>
+              <p class="form-note" style="margin-top: var(--space-4)">
+                We reply from a real human address. No marketing automation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-slot="footer"></div>
+
+    <script src="../js/partials.js"></script>
+    <script>
+      window.NYUKD.mount({ base: '../', current: 'consulting' });
+    </script>
+    <script src="../js/app.js"></script>
+  <script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="transform:translate(-${scrollX}px,-${scrollY}px);transform-origin:top left">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>

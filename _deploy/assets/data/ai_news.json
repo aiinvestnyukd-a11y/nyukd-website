@@ -1,0 +1,41 @@
+{
+  "updated": "2026-06-04",
+  "tagline": "Five things worth knowing. Refreshed daily.",
+  "items": [
+    {
+      "tag": "Companies",
+      "headline": "Anthropic leapfrogs OpenAI; files for IPO at $965B",
+      "summary": "Anthropic is now the world's most valuable AI startup. Confidential S-1 filed 1 June; OpenAI's offering may follow this year.",
+      "source": "CNBC / industry reporting",
+      "url": "https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html"
+    },
+    {
+      "tag": "Models",
+      "headline": "Microsoft ships first in-house models: MAI-Code-1-Flash + MAI-Thinking-1",
+      "summary": "Coding model that turns plain-language briefs into shipping code, plus a low-cost reasoning model. Signals reduced OpenAI dependence.",
+      "source": "CNBC, 2 Jun 2026",
+      "url": "https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html"
+    },
+    {
+      "tag": "Models",
+      "headline": "Google's Gemini 3.1 Ultra lands",
+      "summary": "Strongest on multimodal + very large context — docs, code, images, research files in a single window. GPT-5.5 still rated best for premium prose.",
+      "source": "LLM-Stats June 2026 digest",
+      "url": "https://llm-stats.com/llm-updates"
+    },
+    {
+      "tag": "Enterprise",
+      "headline": "The big shift: vendors stop selling models, start selling the runtime",
+      "summary": "Build, Google I/O, ServiceNow Knowledge all pitched the same thing — governed runtimes for autonomous agents. Microsoft Agent 365 hit GA; Nvidia + ServiceNow shipped audited agent ops.",
+      "source": "Dr Vikram Singh · industry analysis",
+      "url": "https://www.drvikramsingh.ai/articles/big-tech-ai-june-2026-beyond-the-model"
+    },
+    {
+      "tag": "Strategy",
+      "headline": "IBM unveils \"AI Operating Model\" blueprint at Think 2026",
+      "summary": "Framework for the widening gap between AI leaders and laggards — focused on integrating agents into how the enterprise actually runs, not just where it experiments.",
+      "source": "IBM Newsroom",
+      "url": "https://newsroom.ibm.com/2026-05-05-think-2026-ibm-delivers-the-blueprint-for-the-ai-operating-model-as-the-ai-divide-widens"
+    }
+  ]
+}

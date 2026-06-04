@@ -1,0 +1,23 @@
+# NYUKD pre-launch — every request returns the Coming Soon page.
+# Drop this .htaccess in the IONOS web root alongside the Coming Soon
+# index.html. Any direct visits to old verticals/pricing/legal paths
+# will be served the Coming Soon page instead of 404-ing.
+
+DirectoryIndex index.html
+
+RewriteEngine On
+
+# Always allow the index itself and the favicon to be served directly.
+RewriteRule ^index\.html$  - [L]
+RewriteRule ^favicon\.svg$ - [L]
+RewriteRule ^favicon\.ico$ - [L]
+
+# Everything else rewrites to /index.html. Use [L] so Apache stops
+# processing rules and serves the file. No redirect — the URL bar
+# keeps the original path, but the user sees the Coming Soon page.
+RewriteRule ^.*$ /index.html [L]
+
+# Stop crawlers from indexing the pre-launch state.
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

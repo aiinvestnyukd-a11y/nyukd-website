@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pricing — NYUKD Invest</title>
+    <meta name="description" content="Three plans for NYUKD Invest: Free, Pro, Premium. Strategy slots, automated execution, live picker, customisable dashboard, bring your own broker." />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&f[]=jetbrains-mono@400,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <style>
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-5);
+        margin-top: var(--space-8);
+      }
+      @media (max-width: 880px) { .pricing-grid { grid-template-columns: 1fr; } }
+      .pricing-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-6);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+        position: relative;
+      }
+      .pricing-card--featured {
+        border-color: var(--color-primary);
+        background: color-mix(in srgb, var(--color-primary) 4%, var(--color-surface));
+      }
+      .pricing-card__badge {
+        position: absolute; top: -10px; right: 20px;
+        background: var(--color-primary); color: var(--color-text-inverse);
+        font-family: var(--font-mono);
+        font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+        font-weight: 700;
+        padding: 3px 10px; border-radius: var(--radius-full);
+      }
+      .pricing-card__name { font-family: var(--font-display); font-size: 22px; font-weight: 800; margin: 0; }
+      .pricing-card__price { font-family: var(--font-display); font-size: 36px; font-weight: 800; line-height: 1; }
+      .pricing-card__price small { font-family: var(--font-mono); font-size: 12px; font-weight: 500; color: var(--color-text-faint); margin-left: 4px; }
+      .pricing-card__note { color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; }
+      .pricing-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: var(--text-sm); color: var(--color-text-muted); }
+      .pricing-card li::before { content: "✓ "; color: var(--color-primary); font-weight: 700; margin-right: 4px; }
+      .pricing-card .btn { margin-top: auto; }
+      .pricing-faq { margin-top: var(--space-10); }
+      .pricing-faq h2 { margin-bottom: var(--space-4); }
+      .pricing-faq details {
+        border-top: 1px solid var(--color-divider);
+        padding: var(--space-3) 0;
+      }
+      .pricing-faq summary {
+        cursor: pointer;
+        font-weight: 500;
+        display: flex; justify-content: space-between; align-items: center;
+        list-style: none;
+      }
+      .pricing-faq summary::-webkit-details-marker { display: none; }
+      .pricing-faq summary::after { content: "+"; color: var(--color-text-muted); font-size: 18px; transition: transform 160ms ease; }
+      .pricing-faq details[open] summary::after { content: "−"; }
+      .pricing-faq details p { color: var(--color-text-muted); margin: var(--space-2) 0 0; }
+    </style>
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+    <div data-slot="header"></div>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container page-hero__inner">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">NYUKD</a>
+            <span class="sep">/</span>
+            <span>Pricing</span>
+          </nav>
+          <span class="eyebrow">NYUKD Invest · Pricing</span>
+          <h1 style="margin-top: var(--space-4)">
+            Start free. <em style="color: var(--color-primary); font-style: normal;">Upgrade when the numbers convince you.</em>
+          </h1>
+          <p class="lede">
+            Every plan runs on a managed paper account by default — there is no path
+            to losing money until you flip the switch yourself. Founder pricing locks
+            in 50% off for 24 months on the first 50 sign-ups.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+
+          <div class="pricing-grid">
+
+            <article class="pricing-card">
+              <h3 class="pricing-card__name">Free</h3>
+              <div class="pricing-card__price">£0<small>/mo</small></div>
+              <p class="pricing-card__note">Always free. Start here.</p>
+              <ul>
+                <li><strong>1</strong> strategy slot</li>
+                <li>Stock Picker — 5-min preview</li>
+                <li>Standard news feed</li>
+                <li>Basic reporting</li>
+                <li>Managed paper account</li>
+              </ul>
+              <a class="btn btn--secondary" href="https://invest.nyukd.com/auth/register" target="_blank" rel="noopener">Create free account</a>
+            </article>
+
+            <article class="pricing-card pricing-card--featured">
+              <span class="pricing-card__badge">Most popular</span>
+              <h3 class="pricing-card__name">Pro</h3>
+              <div class="pricing-card__price">£19<small>/mo</small></div>
+              <p class="pricing-card__note">Billed monthly · cancel any time</p>
+              <ul>
+                <li><strong>2</strong> strategy slots</li>
+                <li>Stock Picker — <strong>always live</strong></li>
+                <li><strong>Premium</strong> news feed</li>
+                <li>Advanced reporting + CSV exports</li>
+                <li>TradingView widget</li>
+                <li>Real-time quotes</li>
+              </ul>
+              <a class="btn btn--primary" href="https://invest.nyukd.com/auth/register" target="_blank" rel="noopener">Start with Pro</a>
+            </article>
+
+            <article class="pricing-card">
+              <h3 class="pricing-card__name">Premium</h3>
+              <div class="pricing-card__price">£59<small>/mo</small></div>
+              <p class="pricing-card__note">Billed monthly · cancel any time</p>
+              <ul>
+                <li><strong>4</strong> strategy slots</li>
+                <li>Stock Picker — <strong>always live</strong></li>
+                <li><strong>Premium</strong> news + tax pack exports</li>
+                <li>TradingView Pro</li>
+                <li><strong>Bring your own broker keys</strong> — Alpaca, eToro, IBKR</li>
+                <li>Priority support · 1-on-1 onboarding</li>
+              </ul>
+              <a class="btn btn--secondary" href="https://invest.nyukd.com/auth/register" target="_blank" rel="noopener">Go Premium</a>
+            </article>
+
+          </div>
+
+          <p style="margin-top: var(--space-6); color: var(--color-text-faint); font-size: var(--text-sm); max-width: 76ch;">
+            Prices in GBP, exclusive of any local VAT. Annual billing saves 17% — toggle
+            shown at checkout. Founder discount <strong style="color: var(--color-text);">FOUNDER50</strong>
+            applies for 24 months from the first paid invoice; standard pricing resumes thereafter.
+          </p>
+
+        </div>
+      </section>
+
+      <section class="section" style="background: var(--color-surface-offset);">
+        <div class="container pricing-faq">
+          <span class="eyebrow">Common questions</span>
+          <h2 style="margin-top: var(--space-3)">Pricing FAQ</h2>
+
+          <details>
+            <summary>Do I need a broker account to start?</summary>
+            <p>No. Free and Pro both run on a managed paper account that we provide — real fills, real timestamps, no real money. You only need your own broker (Alpaca, eToro, or Interactive Brokers) when you upgrade to Premium and decide to go live.</p>
+          </details>
+
+          <details>
+            <summary>Can I cancel any time?</summary>
+            <p>Yes. Cancel from your account's Subscription page or through the Stripe billing portal. Access continues until the end of the current billing period, then drops back to Free.</p>
+          </details>
+
+          <details>
+            <summary>What's a "strategy slot"?</summary>
+            <p>A strategy slot is one running instance of a trading strategy — either one of our four defaults (Momentum, Unsharp, Box, Pullback) or your own logic plugged in via the Strategy Builder. Free includes 1 slot, Pro 2, Premium 4.</p>
+          </details>
+
+          <details>
+            <summary>How is FOUNDER50 applied?</summary>
+            <p>Enter the code <strong style="color: var(--color-text);">FOUNDER50</strong> at checkout to get 50% off any paid plan for 24 months. Available to the first 50 sign-ups while we're in live beta. Standard pricing resumes automatically after 24 months.</p>
+          </details>
+
+          <details>
+            <summary>Is NYUKD Invest a financial advisor?</summary>
+            <p>No. NYUKD Invest is infrastructure for automated day trading — we provide tools to make disciplined trading easier. We do not give investment advice, signals, or recommendations. Please read <a href="legal/terms.html" style="color: var(--color-primary);">our T&amp;Cs</a> before subscribing.</p>
+          </details>
+
+        </div>
+      </section>
+
+    </main>
+
+    <div data-slot="footer"></div>
+
+    <script src="js/partials.js"></script>
+    <script>
+      window.NYUKD.mount({ base: '', current: 'pricing' });
+    </script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

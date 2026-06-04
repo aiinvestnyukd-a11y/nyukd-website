@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NYUKD — A modern group of brands</title>
+    <meta
+      name="description"
+      content="NYUKD is a group of brands building credible consulting, source-verified social, learning games, and original infotainment and entertainment. Visit NYUKD.com to follow what's next."
+    />
+    <meta property="og:title" content="NYUKD — A modern group of brands" />
+    <meta
+      property="og:description"
+      content="Investment, infotainment, consulting, entertainment, gaming, and social products built in the open with AI-led operating models."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://NYUKD.com/" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&f[]=jetbrains-mono@400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-logo" href="/" aria-label="NYUKD home">
+          <svg
+            class="brand-mark"
+            width="32"
+            height="32"
+            viewBox="0 0 64 64"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            aria-hidden="true"
+          >
+            <rect x="6" y="6" width="52" height="52" rx="4" />
+            <path d="M16 48 L16 16 L48 48 L48 16" />
+            <circle cx="48" cy="48" r="3.5" fill="var(--color-primary)" stroke="none" />
+          </svg>
+          <span class="wordmark">NY<span>U</span>KD</span>
+        </a>
+
+        <nav class="site-nav" data-site-nav aria-label="Primary">
+          <a href="verticals/investment.html">Investment</a>
+          <a href="verticals/infotainment.html">Infotainment</a>
+          <a href="verticals/consulting.html">Consulting</a>
+          <a href="verticals/entertainment.html">Entertainment</a>
+          <a href="verticals/gaming.html">Gaming</a>
+          <a href="verticals/social.html">Social</a>
+          <a href="#waitlist">Waitlist</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme"></button>
+          <button class="menu-toggle" data-menu-toggle aria-label="Open menu" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <div class="eyebrow hero__eyebrow">
+              <span class="status-dot" aria-hidden="true"></span>
+              NYUKD.com · Open rollout
+            </div>
+            <h1 class="hero__title fade-up">
+              Building useful businesses with <em>AI at the core.</em>
+            </h1>
+            <p class="hero__lede fade-up">
+              NYUKD is rolling out a portfolio of practical ventures across investment, media,
+              consulting, entertainment, games, and safer social products. Each practice is built
+              around an AI-led operating model, launched in the open and improved with real users.
+            </p>
+            <div class="hero__ctas fade-up">
+              <a href="#verticals" class="btn btn--primary btn--lg"
+                >Explore the rollout <span class="arrow">→</span></a
+              >
+              <a href="#waitlist" class="btn btn--secondary btn--lg">Join the waitlist</a>
+            </div>
+          </div>
+
+          <aside class="hero__visual" aria-label="NYUKD AI rollout visual">
+            <div class="orbit-card orbit-card--investment">
+              <img src="assets/thumb-investment.svg" alt="" />
+              <span>Investment</span>
+            </div>
+            <div class="orbit-card orbit-card--infotainment">
+              <img src="assets/thumb-infotainment.svg" alt="" />
+              <span>Infotainment</span>
+            </div>
+            <div class="orbit-card orbit-card--consulting">
+              <img src="assets/thumb-consulting.svg" alt="" />
+              <span>Consulting</span>
+            </div>
+          </aside>
+
+          <div class="hero__meta">
+            <div class="hero__meta-item">
+              <strong>06</strong>
+              <span>practices in scope</span>
+            </div>
+            <div class="hero__meta-item">
+              <strong>01</strong>
+              <span>first build: Investment</span>
+            </div>
+            <div class="hero__meta-item">
+              <strong>AI</strong>
+              <span>inside the operating model</span>
+            </div>
+            <div class="hero__meta-item">
+              <strong>NYUKD.com</strong>
+              <span>the public rollout hub</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VERTICALS -->
+      <section class="section" id="verticals">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">The practices</span>
+              <h2 style="margin-top: var(--space-3)">
+                Six practical launch tracks.
+              </h2>
+            </div>
+            <p>
+              Each practice starts with a focused prototype, a clear audience, and a reason for
+              AI to lead the workflow. The goal is not to look futuristic; it is to make useful
+              work easier to build, verify, measure, and scale.
+            </p>
+          </div>
+
+          <div class="verticals">
+            <a class="vertical-card" data-vertical="investment" href="verticals/investment.html">
+              <span class="index">01</span>
+              <img class="card-thumb" src="assets/thumb-investment.svg" alt="" loading="lazy" />
+              <span class="pill pill--accent">First focus</span>
+              <h3>Investment</h3>
+              <p>
+                AI-led trading is the first scope: transparent model logic, risk controls, and a
+                dashboard that will publish real strategy performance.
+              </p>
+              <span class="card-cta">Preview the investment track <span class="arrow">→</span></span>
+            </a>
+
+            <a class="vertical-card" data-vertical="infotainment" href="verticals/infotainment.html">
+              <span class="index">02</span>
+              <img class="card-thumb" src="assets/thumb-infotainment.svg" alt="" loading="lazy" />
+              <span class="pill">Coming soon</span>
+              <h3>Infotainment</h3>
+              <p>
+                AI-led explainers, deep dives, and useful stories that make complex topics easier
+                to understand without losing source discipline.
+              </p>
+              <span class="card-cta">Preview <span class="arrow">→</span></span>
+            </a>
+
+            <a class="vertical-card" data-vertical="consulting" href="verticals/consulting.html">
+              <span class="index">03</span>
+              <img class="card-thumb" src="assets/thumb-consulting.svg" alt="" loading="lazy" />
+              <span class="pill">Live brief</span>
+              <h3>Consulting</h3>
+              <p>
+                Process transformation, operating-model redesign, and practical support for
+                operationalising AI inside real teams and workflows.
+              </p>
+              <span class="card-cta">Read the brief <span class="arrow">→</span></span>
+            </a>
+
+            <a class="vertical-card" data-vertical="entertainment" href="verticals/entertainment.html">
+              <span class="index">04</span>
+              <img class="card-thumb" src="assets/thumb-entertainment.svg" alt="" loading="lazy" />
+              <span class="pill">Coming soon</span>
+              <h3>Entertainment</h3>
+              <p>
+                AI-led stories, videos, and animated concepts developed with a clear creative
+                process and responsible publishing standards.
+              </p>
+              <span class="card-cta">Preview <span class="arrow">→</span></span>
+            </a>
+
+            <a class="vertical-card" data-vertical="gaming" href="verticals/gaming.html">
+              <span class="index">05</span>
+              <img class="card-thumb" src="assets/thumb-gaming.svg" alt="" loading="lazy" />
+              <span class="pill">Coming soon</span>
+              <h3>Gaming</h3>
+              <p>
+                AI-led game development for learning-based games across maths, science,
+                geography, reasoning, and aptitude.
+              </p>
+              <span class="card-cta">Preview <span class="arrow">→</span></span>
+            </a>
+
+            <a class="vertical-card" data-vertical="social" href="verticals/social.html">
+              <span class="index">06</span>
+              <img class="card-thumb" src="assets/thumb-social.svg" alt="" loading="lazy" />
+              <span class="pill">In design</span>
+              <h3>Social</h3>
+              <p>
+                A secure social network for adults, kids, and institutions where information has
+                sources, AI-led safety checks support moderation, and verification is designed
+                first.
+              </p>
+              <span class="card-cta">See the access pathways <span class="arrow">→</span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- BEST WAY FORWARD -->
+      <section class="section" id="roadmap" style="background: var(--color-surface-offset);">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Best way forward</span>
+              <h2 style="margin-top: var(--space-3)">
+                An open rollout we can actually ship.
+              </h2>
+            </div>
+            <p>
+              The fastest route is to prove one focused track at a time. Start with AI-led
+              trading, learn from real performance data, then expand into AI-led media,
+              consulting, entertainment, gaming, and social with the right safety foundations.
+            </p>
+          </div>
+
+          <div class="roadmap">
+            <article class="phase" data-state="now">
+              <div class="phase__num">Phase 01 · Now</div>
+              <h3 class="phase__title">Investment + trading dashboard</h3>
+              <p class="phase__body">
+                Use NYUKD.com to introduce the portfolio, then start with AI-led trading:
+                strategy scope, risk rules, and a dashboard for real performance reporting.
+              </p>
+            </article>
+
+            <article class="phase">
+              <div class="phase__num">Phase 02 · Next</div>
+              <h3 class="phase__title">Infotainment pilot</h3>
+              <p class="phase__body">
+                Publish a small series of AI-led explainers with human review, visible
+                sources, and a repeatable editorial workflow.
+              </p>
+            </article>
+
+            <article class="phase">
+              <div class="phase__num">Phase 03</div>
+              <h3 class="phase__title">Consulting offer</h3>
+              <p class="phase__body">
+                Turn process transformation and operational AI into a clear consulting offer:
+                diagnostics, operating model, roadmap, and implementation support.
+              </p>
+            </article>
+
+            <article class="phase">
+              <div class="phase__num">Phase 04</div>
+              <h3 class="phase__title">Entertainment + Gaming pilots</h3>
+              <p class="phase__body">
+                Test one AI-led story or video and one learning game before scaling creative
+                output or building a larger catalogue.
+              </p>
+            </article>
+
+            <article class="phase">
+              <div class="phase__num">Phase 05</div>
+              <h3 class="phase__title">Social MVP + launch ops</h3>
+              <p class="phase__body">
+                Build Social only after trust, safety, verification, consent, analytics, and
+                support operations are ready.
+              </p>
+            </article>
+          </div>
+
+          <div class="kpi-strip" style="margin-top: var(--space-10)">
+            <div class="kpi">
+              <div class="kpi__value tabular">~6 wks</div>
+              <div class="kpi__label">First investment pilot target</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__value tabular">06</div>
+              <div class="kpi__label">Practices in the rollout</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__value tabular">AI</div>
+              <div class="kpi__label">Leads the operating model</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__value tabular">100%</div>
+              <div class="kpi__label">Source discipline for public information</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WAITLIST -->
+      <section class="section" id="waitlist">
+        <div class="container container--default">
+          <div class="waitlist">
+            <div>
+              <span class="eyebrow">Stay close</span>
+              <h2 style="margin-top: var(--space-3)">
+                Get the first invite, not the public launch.
+              </h2>
+              <p>
+                One short email when each practice opens. No sales sequences, no pixel chasing.
+                Tell us where you'd like to be useful — or just listen in.
+              </p>
+              <p style="font-size: var(--text-sm); color: var(--color-text-faint);">
+                You can opt out of any practice's updates at any time. We will never share your
+                email.
+              </p>
+            </div>
+            <form class="waitlist-form" data-waitlist-form>
+              <div class="row">
+                <input
+                  class="input"
+                  type="email"
+                  required
+                  name="email"
+                  placeholder="you@domain.com"
+                  aria-label="Email address"
+                />
+              </div>
+              <div class="row">
+                <select class="input select" name="interest" aria-label="Practice interest">
+                  <option value="">I'm interested in…</option>
+                  <option>All practices</option>
+                  <option>Investment</option>
+                  <option>Infotainment</option>
+                  <option>Consulting</option>
+                  <option>Entertainment</option>
+                  <option>Gaming</option>
+                  <option>Social</option>
+                </select>
+              </div>
+              <div class="row">
+                <button class="btn btn--primary" type="submit" style="width: 100%">
+                  Join the waitlist <span class="arrow">→</span>
+                </button>
+              </div>
+              <p class="form-note">
+                We will email from a NYUKD.com address once the domain is live.
+              </p>
+              <div class="form-success" role="status">
+                <strong>You're on the list.</strong> We'll write when there's something real to
+                show — not before.
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__top">
+          <div class="footer-col">
+            <a class="site-logo" href="/" aria-label="NYUKD home">
+              <svg width="28" height="28" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                <rect x="6" y="6" width="52" height="52" rx="4"/>
+                <path d="M16 48 L16 16 L48 48 L48 16"/>
+                <circle cx="48" cy="48" r="3.5" fill="var(--color-primary)" stroke="none"/>
+              </svg>
+              <span class="wordmark">NY<span>U</span>KD</span>
+            </a>
+            <p style="margin-top: var(--space-4); color: var(--color-text-muted); font-size: var(--text-sm); max-width: 36ch;">
+              Practical ventures built in the open, with AI where it makes the work better.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Practices</h4>
+            <ul>
+              <li><a href="verticals/investment.html">Investment</a></li>
+              <li><a href="verticals/infotainment.html">Infotainment</a></li>
+              <li><a href="verticals/consulting.html">Consulting</a></li>
+              <li><a href="verticals/entertainment.html">Entertainment</a></li>
+              <li><a href="verticals/gaming.html">Gaming</a></li>
+              <li><a href="verticals/social.html">Social</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#roadmap">Roadmap</a></li>
+              <li><a href="#waitlist">Waitlist</a></li>
+              <li><a href="mailto:hello@nyukd.com">hello@nyukd.com</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Privacy (coming)</a></li>
+              <li><a href="#">Terms (coming)</a></li>
+              <li><a href="#">Trust & safety</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="site-footer__bottom">
+          <span>© <span class="tabular">2025</span> NYUKD. All rights reserved.</span>
+          <span>NYUKD.com · Built deliberately.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+  <script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="transform:translate(-${scrollX}px,-${scrollY}px);transform-origin:top left">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>

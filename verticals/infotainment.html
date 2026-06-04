@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Infotainment — AI-led explainers. Coming soon.</title>
+    <meta
+      name="description"
+      content="Infotainment is the AI-led content arm of NYUKD, creating sourced explainers, deep dives, and editorial formats that earn the audience's time."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&f[]=jetbrains-mono@400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/app.css" />
+    <style>
+      .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--space-5); margin-top: var(--space-8); }
+      .video-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; }
+      .video-card__media { position: relative; aspect-ratio: 9 / 16; background: #0A0E1A; display: flex; align-items: center; justify-content: center; }
+      .video-card__media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .video-card__media--soon { background: linear-gradient(160deg, #16122b 0%, #0A0E1A 72%); padding: var(--space-4); text-align: center; }
+      .video-card__hookword { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.1; color: var(--color-text); text-shadow: 0 2px 14px rgba(0,0,0,.55); }
+      .video-card__badge { position: absolute; top: 10px; left: 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: #0A0E1A; background: var(--color-primary); padding: 3px 8px; border-radius: var(--radius-full); }
+      .video-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: 6px; }
+      .video-card__ai { align-self: flex-start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary); border: 1px solid color-mix(in srgb, var(--color-primary) 40%, transparent); padding: 2px 7px; border-radius: var(--radius-full); }
+      .video-card__body h3 { margin: 4px 0 0; }
+      .video-card__body p { margin: 0; font-size: var(--text-sm); color: var(--color-text-muted); }
+      .video-card__meta { color: var(--color-text-faint) !important; font-size: 12px !important; }
+      @media (max-width: 560px) { .library-grid { grid-template-columns: repeat(2, 1fr); } }
+      /* AI Update — daily news section */
+      .news-eyebrow-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+      .news-pulse { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary); }
+      .news-pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 50%, transparent); animation: pulse 2s infinite; }
+      @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 70%, transparent);} 70%{box-shadow: 0 0 0 10px transparent;} 100%{box-shadow:0 0 0 0 transparent;} }
+      .news-date { color: var(--color-text-muted); font-size: var(--text-sm); }
+      .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-4); margin-top: var(--space-6); }
+      .news-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-4); display: flex; flex-direction: column; gap: 8px; transition: border-color 120ms ease, transform 120ms ease; }
+      .news-card:hover { border-color: var(--color-primary); transform: translateY(-1px); }
+      .news-tag { align-self: flex-start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary); border: 1px solid color-mix(in srgb, var(--color-primary) 40%, transparent); padding: 2px 7px; border-radius: var(--radius-full); }
+      .news-headline { font-weight: 700; font-size: 15px; line-height: 1.35; margin: 4px 0 0 0; color: var(--color-text); }
+      .news-summary { font-size: 13px; color: var(--color-text-muted); margin: 0; line-height: 1.45; }
+      .news-source { font-size: 11px; color: var(--color-text-faint); margin-top: auto; padding-top: 6px; }
+      .news-source a { color: var(--color-text-muted); text-decoration: none; border-bottom: 1px dotted var(--color-text-faint); }
+      .news-source a:hover { color: var(--color-primary); border-color: var(--color-primary); }
+    </style>
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+    <div data-slot="header"></div>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container page-hero__inner">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">NYUKD</a>
+            <span class="sep">/</span>
+            <span>Infotainment</span>
+          </nav>
+          <span class="eyebrow">Practice 02 · Coming soon</span>
+          <h1 style="margin-top: var(--space-4)">
+            AI-led content that <em style="color: var(--color-primary); font-style: normal;">earns</em> the audience's time.
+          </h1>
+          <p class="lede">
+            Infotainment is the content arm of NYUKD. AI leads first drafts, scripts, visuals,
+            and format testing, while human editing and source checks keep the output useful,
+            not noisy.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="ai-update">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="news-eyebrow-row">
+                <span class="news-pulse"><span class="news-pulse-dot"></span> Live · AI Update</span>
+                <span class="news-date" id="news-date">—</span>
+              </div>
+              <h2 style="margin-top: var(--space-3)">Today in AI</h2>
+            </div>
+            <p id="news-tagline">Five things worth knowing. Refreshed daily.</p>
+          </div>
+          <div id="news-grid" class="news-grid"></div>
+        </div>
+      </section>
+
+      <section class="section" id="watch">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Watch</span>
+              <h2 style="margin-top: var(--space-3)">The library</h2>
+            </div>
+            <p>
+              AI-led explainers on business transformation and AI adoption — sourced,
+              human-edited, and clearly labelled. New drops land here first.
+            </p>
+          </div>
+          <div id="library-grid" class="library-grid" data-media="../assets/video/infotainment/"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">What we'll publish</span>
+              <h2 style="margin-top: var(--space-3)">Three formats. One editorial standard.</h2>
+            </div>
+            <p>
+              Whatever the format, every Infotainment piece is AI-led, human-edited,
+              sourced, and signed with a real byline. No engagement-bait, no churn.
+            </p>
+          </div>
+
+          <img class="section-visual" src="../assets/thumb-infotainment.svg" alt="Abstract AI-led infotainment visual" style="margin-bottom: var(--space-8);" />
+
+          <div class="feature-list" style="grid-template-columns: repeat(3, 1fr); gap: var(--space-5);">
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+              </div>
+              <h3>Short-form explainers</h3>
+              <p>60–120 second video and audio explainers on a topic worth understanding properly.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <h3>Long-form essays</h3>
+              <p>3,000–5,000 word deep dives. Edited like editorial, sourced like research.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>
+              </div>
+              <h3>Editorial briefings</h3>
+              <p>Periodic briefings that decode a sector or shift, written for working professionals.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="container">
+          <div class="coming-soon">
+            <span class="ticker"><span class="pulse-dot">●</span> Build status — Phase 04 pilot</span>
+            <h2>One series first. Then the masthead.</h2>
+            <p>
+              We will publish one editorial series — six pieces, one cadence, one named
+              author — before introducing the rest of the masthead. Pitches welcome.
+            </p>
+            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+              <a class="btn btn--primary" href="../index.html#waitlist">Subscribe at launch <span class="arrow">→</span></a>
+              <a class="btn btn--secondary" href="mailto:editorial@nyukd.com?subject=Infotainment%20pitch">Pitch a piece</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-slot="footer"></div>
+
+    <script src="../js/partials.js"></script>
+    <script>
+      window.NYUKD.mount({ base: '../', current: 'infotainment' });
+    </script>
+    <script src="../js/app.js"></script>
+    <script>
+      // Infotainment library. To publish: drop the MP4 into
+      // assets/video/infotainment/, then set status:"live" and src:"file.mp4".
+      window.NYUKD_LIBRARY = [
+        { title: "The 2027 office", hookword: "2027 OFFICE", teaser: "1995 had a fax machine. 2025 had a chat-AI in every browser. By 2027, half of white-collar work will be done by agents.", meta: "Transformation futures · sourced", status: "live", src: "the-2027-office.mp4" },
+        { title: "From AI pilot to real adoption", hookword: "PILOT → ADOPTION", teaser: "Why most enterprise AI pilots stall — and what makes adoption actually stick.", meta: "AI transformation · sourced", status: "live", src: "from-ai-pilot-to-adoption.mp4" },
+        { title: "The 60% problem", hookword: "THE 60% PROBLEM", teaser: "Most AI rollouts win the demo and lose the floor. Here's the gap that decides adoption.", meta: "AI transformation · sourced", status: "coming" },
+        { title: "Pizza beats policy", hookword: "PIZZA BEATS POLICY", teaser: "The best AI adoption spreads bottom-up, not by mandate. Why that works.", meta: "AI transformation · sourced", status: "coming" }
+      ];
+    </script>
+    <script src="../js/library.js"></script>
+    <script>
+      // AI Update — daily news. Source of truth is assets/data/ai_news.json.
+      // Fetched at page load; falls back to inline snapshot below if fetch fails
+      // (so file:// previews and offline first-paint still render something).
+      window.NYUKD_NEWS_FALLBACK = {
+        updated: "2026-06-04",
+        tagline: "Five things worth knowing. Refreshed daily.",
+        items: [
+          { tag: "Companies", headline: "Anthropic leapfrogs OpenAI; files for IPO at $965B",
+            summary: "Anthropic is now the world's most valuable AI startup. Confidential S-1 filed 1 June; OpenAI's offering may follow this year.",
+            source: "CNBC · industry reporting",
+            url: "https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html" },
+          { tag: "Models", headline: "Microsoft ships first in-house models: MAI-Code-1-Flash + MAI-Thinking-1",
+            summary: "A coding model that turns plain-language briefs into shipping code, plus a low-cost reasoning model. Signals reduced OpenAI dependence.",
+            source: "CNBC · 2 Jun 2026",
+            url: "https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html" },
+          { tag: "Models", headline: "Google's Gemini 3.1 Ultra lands",
+            summary: "Strongest on multimodal + very large context — docs, code, images, research files in a single window. GPT-5.5 still rated best for premium prose.",
+            source: "LLM-Stats June digest",
+            url: "https://llm-stats.com/llm-updates" },
+          { tag: "Enterprise", headline: "Vendors stop selling models — start selling the agent runtime",
+            summary: "Build, Google I/O and ServiceNow Knowledge all pitched the same thing: governed runtimes for autonomous agents. Microsoft Agent 365 hit GA; Nvidia + ServiceNow shipped audited agent ops.",
+            source: "Dr Vikram Singh · analysis",
+            url: "https://www.drvikramsingh.ai/articles/big-tech-ai-june-2026-beyond-the-model" },
+          { tag: "Strategy", headline: "IBM unveils \"AI Operating Model\" at Think 2026",
+            summary: "Framework for the widening gap between AI leaders and laggards — integrating agents into how the enterprise runs, not just where it experiments.",
+            source: "IBM Newsroom",
+            url: "https://newsroom.ibm.com/2026-05-05-think-2026-ibm-delivers-the-blueprint-for-the-ai-operating-model-as-the-ai-divide-widens" }
+        ]
+      };
+
+      (function () {
+        function esc(s) { return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
+        function fmtDate(iso) {
+          var d = new Date(iso + "T00:00:00");
+          if (isNaN(d)) return iso;
+          return d.toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "long", year: "numeric" });
+        }
+        function render(data) {
+          var dateEl = document.getElementById("news-date");
+          var taglineEl = document.getElementById("news-tagline");
+          var grid = document.getElementById("news-grid");
+          if (!grid || !data) return;
+          if (dateEl) dateEl.textContent = fmtDate(data.updated || "");
+          if (taglineEl && data.tagline) taglineEl.textContent = data.tagline;
+          grid.innerHTML = "";
+          (data.items || []).forEach(function (it) {
+            var card = document.createElement("article");
+            card.className = "news-card";
+            card.innerHTML =
+              '<span class="news-tag">' + esc(it.tag || "") + '</span>' +
+              '<h3 class="news-headline">' + esc(it.headline || "") + '</h3>' +
+              '<p class="news-summary">' + esc(it.summary || "") + '</p>' +
+              '<p class="news-source">' +
+                (it.url
+                  ? '<a href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.source || "source") + '</a>'
+                  : esc(it.source || ""))
+              + '</p>';
+            grid.appendChild(card);
+          });
+        }
+        // Try the live JSON first; fall back to inline snapshot for file:// previews.
+        fetch("../assets/data/ai_news.json", { cache: "no-cache" })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+          .then(render)
+          .catch(function () { render(window.NYUKD_NEWS_FALLBACK); });
+      })();
+    </script>
+  </body>
+</html>

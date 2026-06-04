@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">Gaming thumbnail</title>
+  <desc id="desc">Learning game board with AI-led puzzle nodes for maths and science.</desc>
+  <rect width="720" height="420" rx="34" fill="#F1ECFF"/>
+  <g transform="translate(94 70)">
+    <rect width="532" height="280" rx="34" fill="#0A0E1A"/>
+    <g stroke="#F4F2ED" stroke-opacity=".15" stroke-width="2">
+      <path d="M76 0v280M152 0v280M228 0v280M304 0v280M380 0v280M456 0v280"/>
+      <path d="M0 70h532M0 140h532M0 210h532"/>
+    </g>
+    <g fill="#3DD9D6">
+      <circle cx="76" cy="70" r="18"/>
+      <circle cx="228" cy="140" r="18"/>
+      <circle cx="380" cy="70" r="18"/>
+      <circle cx="456" cy="210" r="18"/>
+    </g>
+    <path d="M76 70l152 70 152-70 76 140" fill="none" stroke="#F5B547" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#F4F2ED" font-family="monospace" font-size="34" font-weight="700">
+      <text x="54" y="224">M</text>
+      <text x="298" y="102">S</text>
+      <text x="414" y="158">AI</text>
+    </g>
+  </g>
+</svg>

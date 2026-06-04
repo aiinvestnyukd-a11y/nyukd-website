@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Terms &amp; Conditions — NYUKD Invest</title>
+    <meta name="description" content="Terms and conditions for using NYUKD Invest — infrastructure for automated day trading. Plain-language v1, last updated May 2026." />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&f[]=jetbrains-mono@400,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/app.css" />
+    <style>
+      .legal-doc { max-width: 72ch; }
+      .legal-doc h2 { margin-top: var(--space-8); }
+      .legal-doc h3 { margin-top: var(--space-5); }
+      .legal-doc p, .legal-doc li { color: var(--color-text-muted); line-height: 1.7; }
+      .legal-doc strong { color: var(--color-text); font-weight: 500; }
+      .legal-doc ul { padding-left: 1.2em; }
+      .legal-doc__meta {
+        display: flex; gap: var(--space-3);
+        color: var(--color-text-faint);
+        font-family: var(--font-mono);
+        font-size: 12px;
+        margin-bottom: var(--space-4);
+      }
+      .legal-doc__callout {
+        background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+        border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+        border-radius: var(--radius-md);
+        padding: var(--space-3) var(--space-4);
+        margin: var(--space-4) 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+    <div data-slot="header"></div>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container page-hero__inner">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">NYUKD</a>
+            <span class="sep">/</span>
+            <span>Terms &amp; Conditions</span>
+          </nav>
+          <span class="eyebrow">Legal · plain language</span>
+          <h1 style="margin-top: var(--space-4)">Terms &amp; Conditions.</h1>
+          <p class="lede">
+            Plain-language v1. We've kept this short and direct so you can read it
+            before subscribing. If the lawyers tighten it later, we'll mark the
+            version + date below and post a changelog.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <article class="legal-doc">
+            <div class="legal-doc__meta">
+              <span>Version 1.1</span>
+              <span>Last updated · 20 May 2026</span>
+            </div>
+
+            <div class="legal-doc__callout">
+              <p style="margin: 0;">
+                <strong>The one-line summary.</strong> NYUKD Invest is software
+                infrastructure for automated day trading. We are not a financial
+                advisor, a signal service, or a guarantor of returns. You decide
+                what to trade, when to go live, and what risk to take.
+              </p>
+            </div>
+
+            <h2>1. What NYUKD Invest is</h2>
+            <p>
+              NYUKD Invest is a software platform that lets you plug a trading strategy
+              (your own or one of our defaults) into an automation slot. The platform
+              books trades, manages stop-losses, and closes positions on your behalf
+              according to the rules of the strategy you've selected.
+            </p>
+            <p>
+              By default, your slots run on a managed paper-trading account that
+              simulates real fills using delayed market data. You only place real
+              money at risk when you explicitly connect your own broker account and
+              switch your slots from Paper to Live.
+            </p>
+
+            <h2>2. What NYUKD Invest is not</h2>
+            <ul>
+              <li><strong>Not a financial advisor.</strong> We don't provide investment, tax, or legal advice. Any signals, picks, or strategy outputs are produced by software running on rules — they are not recommendations.</li>
+              <li><strong>Not a custodian.</strong> When you go live, trades happen in your own broker account (Alpaca, eToro, Interactive Brokers, or others we support). We never hold your funds, and you can revoke our API access at any time from your broker's settings.</li>
+              <li><strong>Not a signal service.</strong> The Stock Picker ranks tickers using public-data heuristics. We don't sell, syndicate, or promise the accuracy of these ranks.</li>
+            </ul>
+
+            <h2>3. Your account</h2>
+            <p>
+              You're responsible for keeping your credentials secure, for the trading
+              activity originating from your account, and for any broker fees,
+              taxes, or losses that result. You must be of legal age and legally
+              permitted to trade securities in your jurisdiction.
+            </p>
+            <p>
+              <strong>Accurate disclosure.</strong> Information you provide at sign-up
+              and during onboarding — including your stated trading experience, risk
+              tolerance, financial situation, jurisdiction, and date of birth — is what
+              the platform uses to surface appropriate features, content, and risk
+              presets. <strong>You must keep this information accurate and update it
+              promptly if it changes.</strong> Knowingly providing false information
+              to bypass a guardrail (for example, claiming professional-trader
+              experience to unlock leverage features, claiming a different jurisdiction
+              to access regional-restricted features, or misrepresenting your age) is a
+              material breach of these terms. Where we identify misrepresentation we
+              may, at our discretion: (a) revert your account to the most restrictive
+              feature set consistent with the verified facts, (b) suspend the account
+              pending re-verification, (c) close the account and refuse future service.
+              Where the misrepresentation has caused loss to you or to other users we
+              accept no liability beyond what these terms otherwise specify.
+            </p>
+
+            <h2>4. Subscriptions &amp; billing</h2>
+            <p>
+              We bill subscriptions through Stripe. Plans are charged monthly or
+              annually based on what you select at checkout. You can cancel from
+              your Subscription page or through the Stripe billing portal at any
+              time — your access continues until the end of the current period,
+              then your account drops to Free.
+            </p>
+            <p>
+              The FOUNDER50 promotion gives the first 50 paid sign-ups 50% off for
+              24 months from their first paid invoice. After 24 months, standard
+              pricing resumes automatically. We may end or modify the promotion at
+              our discretion; anyone already enrolled keeps their discount through
+              the original 24-month term.
+            </p>
+
+            <h2>5. Risks</h2>
+            <p>
+              Day trading carries substantial risk of loss. Strategy performance on
+              paper trading does not guarantee live trading performance. Slippage,
+              broker latency, partial fills, and market gaps will all affect your
+              real-money results. The historical performance of any default strategy
+              is provided for context and does not predict future returns.
+            </p>
+            <p>
+              You should only allocate capital you can afford to lose. You're
+              responsible for monitoring your slots, setting your own risk limits,
+              and disabling automation if something looks wrong.
+            </p>
+
+            <h2>6. Bring-your-own-credentials (BYOC)</h2>
+            <p>
+              When you connect a broker on the Premium plan, NYUKD Invest stores
+              your API credentials encrypted and uses them only to place trades on
+              your behalf according to the strategy you've selected. We never use
+              your credentials for any other purpose. You can revoke access at any
+              time from your broker's API settings; once revoked, our access stops
+              immediately.
+            </p>
+
+            <h2>7. Intellectual property</h2>
+            <p>
+              The NYUKD Invest software, our default strategies, the Stock Picker
+              engine, and the dashboard UI are our intellectual property. Custom
+              strategies you build using the Strategy Builder are yours — we don't
+              claim ownership of your logic, and we don't share it with other
+              users.
+            </p>
+
+            <h2>8. Liability</h2>
+            <p>
+              To the maximum extent permitted by law, NYUKD Invest is provided
+              "as is" without warranties. We are not liable for trading losses,
+              missed trades, lost profits, or any consequential damages arising
+              from your use of the platform. Where law caps our liability higher
+              than this, those caps apply.
+            </p>
+
+            <h2>9. Changes to these terms</h2>
+            <p>
+              We may update these terms. We'll bump the version and date at the
+              top of this document, and we'll email anyone affected by material
+              changes at least 14 days before they take effect. Continued use of
+              the platform after the change date constitutes acceptance.
+            </p>
+
+            <h2>10. Contact</h2>
+            <p>
+              Questions, concerns, or revisions: write to
+              <a href="mailto:hello@nyukd.com" style="color: var(--color-primary);">hello@nyukd.com</a>.
+              We'll get back within two business days.
+            </p>
+
+          </article>
+        </div>
+      </section>
+
+    </main>
+
+    <div data-slot="footer"></div>
+
+    <script src="../js/partials.js"></script>
+    <script>
+      window.NYUKD.mount({ base: '../', current: 'legal-terms' });
+    </script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

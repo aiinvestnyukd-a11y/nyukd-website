@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">Social thumbnail</title>
+  <desc id="desc">Secure social network map with adult, institution, and kid pathways connected to source badges.</desc>
+  <rect width="720" height="420" rx="34" fill="#FFF7ED"/>
+  <g stroke="#0E7C7B" stroke-width="8" stroke-linecap="round" opacity=".56">
+    <path d="M176 210h160M384 210h160"/>
+    <path d="M360 182L232 104M360 238L236 316M360 182l128-78M360 238l128 78"/>
+  </g>
+  <g fill="#FFFFFF" stroke="#D4D1CA" stroke-width="2">
+    <circle cx="176" cy="210" r="58"/>
+    <circle cx="360" cy="210" r="70"/>
+    <circle cx="544" cy="210" r="58"/>
+    <circle cx="232" cy="104" r="42"/>
+    <circle cx="236" cy="316" r="42"/>
+    <circle cx="488" cy="104" r="42"/>
+    <circle cx="488" cy="316" r="42"/>
+  </g>
+  <g fill="#0A0E1A">
+    <circle cx="176" cy="194" r="16"/><path d="M144 232c12-22 52-22 64 0"/>
+    <rect x="330" y="180" width="60" height="60" rx="16"/>
+    <circle cx="544" cy="194" r="16"/><path d="M512 232c12-22 52-22 64 0"/>
+  </g>
+  <g fill="#0E7C7B">
+    <circle cx="232" cy="104" r="12"/>
+    <circle cx="236" cy="316" r="12"/>
+    <circle cx="488" cy="104" r="12"/>
+    <circle cx="488" cy="316" r="12"/>
+  </g>
+  <path d="M344 211l14 14 30-34" fill="none" stroke="#3DD9D6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

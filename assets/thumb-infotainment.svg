@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">Infotainment thumbnail</title>
+  <desc id="desc">AI-led editorial cards, source markers, and content timeline.</desc>
+  <rect width="720" height="420" rx="34" fill="#EEF5FF"/>
+  <circle cx="604" cy="82" r="88" fill="#0E7C7B" opacity=".12"/>
+  <circle cx="110" cy="338" r="118" fill="#C7641A" opacity=".12"/>
+  <g transform="translate(92 74)">
+    <rect width="242" height="270" rx="28" fill="#FFFFFF" stroke="#D4D1CA"/>
+    <rect x="28" y="32" width="142" height="18" rx="9" fill="#0A0E1A"/>
+    <rect x="28" y="72" width="184" height="12" rx="6" fill="#7A7974" opacity=".55"/>
+    <rect x="28" y="100" width="140" height="12" rx="6" fill="#7A7974" opacity=".35"/>
+    <rect x="28" y="146" width="186" height="88" rx="18" fill="#EAF7F7"/>
+    <path d="M58 206l34-34 34 22 40-48" fill="none" stroke="#0E7C7B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(306 112)">
+    <rect width="250" height="198" rx="28" fill="#0A0E1A"/>
+    <path d="M54 70h142M54 112h108M54 154h152" stroke="#F4F2ED" stroke-width="14" stroke-linecap="round" opacity=".88"/>
+    <circle cx="206" cy="56" r="18" fill="#3DD9D6"/>
+    <path d="M199 56h14M206 49v14" stroke="#0A0E1A" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <path d="M208 300c92 50 194 50 306 0" fill="none" stroke="#C7641A" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 18"/>
+</svg>

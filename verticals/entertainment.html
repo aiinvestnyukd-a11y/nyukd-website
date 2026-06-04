@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Entertainment — AI-led storytelling. Coming soon.</title>
+    <meta
+      name="description"
+      content="Entertainment is a studio-grade home for AI-led stories, animated shorts, and serialized video, published responsibly and credited clearly."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&f[]=jetbrains-mono@400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/app.css" />
+    <style>
+      .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--space-5); margin-top: var(--space-8); }
+      .video-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; }
+      .video-card__media { position: relative; aspect-ratio: 9 / 16; background: #0A0E1A; display: flex; align-items: center; justify-content: center; }
+      .video-card__media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .video-card__media--soon { background: linear-gradient(160deg, #16122b 0%, #0A0E1A 72%); padding: var(--space-4); text-align: center; }
+      .video-card__hookword { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.1; color: var(--color-text); text-shadow: 0 2px 14px rgba(0,0,0,.55); }
+      .video-card__badge { position: absolute; top: 10px; left: 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: #0A0E1A; background: var(--color-primary); padding: 3px 8px; border-radius: var(--radius-full); }
+      .video-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: 6px; }
+      .video-card__ai { align-self: flex-start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary); border: 1px solid color-mix(in srgb, var(--color-primary) 40%, transparent); padding: 2px 7px; border-radius: var(--radius-full); }
+      .video-card__body h3 { margin: 4px 0 0; }
+      .video-card__body p { margin: 0; font-size: var(--text-sm); color: var(--color-text-muted); }
+      .video-card__meta { color: var(--color-text-faint) !important; font-size: 12px !important; }
+      @media (max-width: 560px) { .library-grid { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+    <div data-slot="header"></div>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container page-hero__inner">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">NYUKD</a>
+            <span class="sep">/</span>
+            <span>Entertainment</span>
+          </nav>
+          <span class="eyebrow">Practice 04 · Coming soon</span>
+          <h1 style="margin-top: var(--space-4)">
+            AI-led storytelling, <em style="color: var(--color-primary); font-style: normal;">responsibly</em> published.
+          </h1>
+          <p class="lede">
+            Entertainment is a studio-grade home for AI-led stories, animated shorts, and
+            serialized video. Every piece is credited, sourced, and labelled because the audience
+            deserves to know how it was made.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="watch">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Watch · No Way That's Real</span>
+              <h2 style="margin-top: var(--space-3)">Unbelievable true stories.</h2>
+            </div>
+            <p>
+              Real stories that sound impossible — told in 60 seconds. Every frame is
+              AI-rendered and we say so. Every fact is sourced. First episodes drop here.
+            </p>
+          </div>
+          <div id="library-grid" class="library-grid" data-media="../assets/video/entertainment/"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Slate</span>
+              <h2 style="margin-top: var(--space-3)">A short, deliberate slate.</h2>
+            </div>
+            <p>
+              We are not chasing volume. The first slate is three formats with shared
+              production craft, model provenance, and credit standards.
+            </p>
+          </div>
+          <img class="section-visual" src="../assets/thumb-entertainment.svg" alt="Abstract AI-led entertainment studio visual" style="margin-bottom: var(--space-8);" />
+          <div class="feature-list" style="grid-template-columns: repeat(3, 1fr); gap: var(--space-5);">
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <h3>Short stories</h3>
+              <p>5–10 minute reads. Original premises, edited by humans, model-assisted in production.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+              </div>
+              <h3>Animated shorts</h3>
+              <p>2–4 minute animations. Storyboard-led, AI-led in shading, motion, and finishing.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="10 8 16 12 10 16 10 8"/></svg>
+              </div>
+              <h3>Serialized video</h3>
+              <p>Limited-run series. Each season has a director, a brief, and a production credit reel.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="container">
+          <div class="coming-soon">
+            <span class="ticker"><span class="pulse-dot">●</span> Build status — Phase 04 pilot</span>
+            <h2>One serialized pilot. Then the slate.</h2>
+            <p>
+              We will publish one short serialized pilot before opening the wider slate. Every
+              episode will publish with a "how this was made" credits page.
+            </p>
+            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+              <a class="btn btn--primary" href="../index.html#waitlist">Get the pilot drop <span class="arrow">→</span></a>
+              <a class="btn btn--secondary" href="mailto:studio@nyukd.com?subject=Entertainment%20collaboration">Collaborate</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-slot="footer"></div>
+
+    <script src="../js/partials.js"></script>
+    <script>
+      window.NYUKD.mount({ base: '../', current: 'entertainment' });
+    </script>
+    <script src="../js/app.js"></script>
+    <script>
+      // No Way That's Real — episode library. To publish: drop the MP4 into
+      // assets/video/entertainment/, then set status:"live" and src:"file.mp4".
+      window.NYUKD_LIBRARY = [
+        { title: "She fell 2 miles into the Amazon — and lived", hookword: "FELL 2 MILES", teaser: "17, the sole survivor of a plane crash — then 11 days alone in the jungle.", meta: "Episode 1 · True story · sources in description", status: "live", src: "koepcke.mp4" },
+        { title: "The man lightning could not kill", hookword: "STRUCK 7×", teaser: "A park ranger struck by lightning seven times — and survived every one.", meta: "Episode 2 · True story · sources in description", status: "live", src: "sullivan.mp4" },
+        { title: "The man who survived both atomic bombs", hookword: "SURVIVED BOTH", teaser: "Hiroshima, then Nagasaki three days later. He lived to 93.", meta: "Episode 3 · True story · sources in description", status: "live", src: "yamaguchi.mp4" },
+        { title: "He carved a road through a mountain — for 22 years", hookword: "22 YEARS, ONE HAMMER", teaser: "Dashrath Manjhi's wife died crossing a ridge. He chiselled a 360-ft passage alone — 1960–1982.", meta: "Episode 4 · True story · India · sources in description", status: "live", src: "manjhi.mp4" }
+      ];
+    </script>
+    <script src="../js/library.js"></script>
+  </body>
+</html>

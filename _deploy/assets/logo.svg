@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter" aria-label="NYUKD monogram">
+  <!-- Outer frame — represents the holding company -->
+  <rect x="6" y="6" width="52" height="52" rx="4" stroke="currentColor"/>
+  <!-- 'N' diagonal — formed from the corner of one block to another -->
+  <path d="M16 48 L16 16 L48 48 L48 16" />
+  <!-- Accent dot — signal cyan -->
+  <circle cx="48" cy="48" r="3.5" fill="#3DD9D6" stroke="none"/>
+</svg>

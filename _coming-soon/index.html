@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NYUKD — Launching soon</title>
+    <meta name="description" content="NYUKD is launching soon. Infrastructure for automated day trading — strategy slots, paper-first execution, BYOC brokers." />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='2' y='2' width='28' height='28' rx='6' fill='none' stroke='%23ffffff' stroke-width='2'/><path d='M9 22 L15 10 L17 22 L23 10' stroke='%23ffffff' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/><circle cx='22' cy='22' r='2' fill='%23ffffff'/></svg>" />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&f[]=jetbrains-mono@400,500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --color-bg: #0A0E1A;
+        --color-text: #F1F2F7;
+        --color-text-muted: rgba(241, 242, 247, 0.72);
+        --color-text-faint: rgba(241, 242, 247, 0.46);
+        --color-border: rgba(241, 242, 247, 0.18);
+        --color-brand-blue: #378ADD;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; margin: 0; }
+      body {
+        background:
+          radial-gradient(90% 70% at 15% 0%, rgba(61, 217, 214, 0.18) 0%, transparent 55%),
+          radial-gradient(60% 60% at 100% 20%, rgba(245, 181, 71, 0.10) 0%, transparent 55%),
+          linear-gradient(180deg, #0A0E1A 0%, #0B1020 100%);
+        color: var(--color-text);
+        font-family: "Satoshi", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+      body::before {
+        content: "";
+        position: fixed; inset: 0;
+        pointer-events: none;
+        background-image: radial-gradient(rgba(61, 217, 214, 0.05) 1px, transparent 1.5px);
+        background-size: 28px 28px;
+      }
+      .cs {
+        position: relative;
+        max-width: 520px;
+        text-align: center;
+        display: flex; flex-direction: column;
+        align-items: center; gap: 22px;
+      }
+      .cs__brand { display: inline-flex; align-items: center; gap: 12px; color: var(--color-text); text-decoration: none; }
+      .cs__brand svg { width: 36px; height: 36px; }
+      .cs__brand-word {
+        font-family: "Cabinet Grotesk", system-ui, sans-serif;
+        font-size: 22px; font-weight: 800; letter-spacing: 0.06em;
+      }
+      .cs__brand-word em { font-style: normal; color: var(--color-brand-blue); }
+      .cs__pill {
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 4px 12px; border-radius: 999px;
+        background: rgba(229, 75, 75, 0.16);
+        border: 1px solid rgba(229, 75, 75, 0.34);
+        color: #F4A5A5; font-family: "JetBrains Mono", monospace;
+        font-size: 11px; letter-spacing: 0.06em;
+      }
+      .cs__pill-dot { width: 7px; height: 7px; border-radius: 50%; background: #E24B4A; }
+      .cs h1 {
+        font-family: "Satoshi", system-ui, sans-serif;
+        font-size: clamp(34px, 5vw, 48px);
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        margin: 0;
+      }
+      .cs h1 em { font-style: normal; color: var(--color-brand-blue); }
+      .cs__lede {
+        color: var(--color-text-muted);
+        font-size: clamp(15px, 1.5vw, 17px);
+        line-height: 1.55;
+        max-width: 44ch;
+        margin: 0;
+      }
+      .cs__waitlist {
+        display: flex; gap: 8px; width: 100%; max-width: 380px;
+        margin-top: 6px;
+      }
+      .cs__waitlist input {
+        flex: 1; min-width: 0;
+        padding: 12px 14px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--color-border);
+        border-radius: 999px;
+        color: var(--color-text);
+        font: inherit; font-size: 14px;
+        outline: none;
+      }
+      .cs__waitlist input::placeholder { color: var(--color-text-faint); }
+      .cs__waitlist input:focus { border-color: var(--color-text); }
+      .cs__waitlist button {
+        padding: 12px 22px;
+        background: var(--color-text);
+        color: var(--color-bg);
+        border: none;
+        border-radius: 999px;
+        font: inherit; font-size: 14px; font-weight: 500;
+        cursor: pointer;
+        transition: opacity 140ms ease, transform 140ms ease;
+      }
+      .cs__waitlist button:hover { transform: translateY(-1px); }
+      .cs__waitlist button:disabled { opacity: 0.5; cursor: not-allowed; }
+      .cs__msg {
+        min-height: 18px;
+        font-size: 13px;
+        color: var(--color-text-muted);
+      }
+      .cs__msg.is-success { color: #5FB872; }
+      .cs__msg.is-error   { color: #E76A9E; }
+      .cs__invited {
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--color-text-faint);
+      }
+      .cs__invited a {
+        color: var(--color-text-muted);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 0.5px;
+      }
+      .cs__invited a:hover { color: var(--color-text); }
+      .cs__foot {
+        position: fixed; bottom: 16px; left: 0; right: 0;
+        text-align: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--color-text-faint);
+        letter-spacing: 0.04em;
+      }
+    </style>
+  </head>
+  <body>
+
+    <main class="cs">
+
+      <a class="cs__brand" href="/" aria-label="NYUKD home">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="2" y="2" width="28" height="28" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M9 22 L15 10 L17 22 L23 10" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22" cy="22" r="2" fill="currentColor"/>
+        </svg>
+        <span class="cs__brand-word">NY<em>U</em>KD</span>
+      </a>
+
+      <span class="cs__pill"><span class="cs__pill-dot" aria-hidden="true"></span> Launching soon</span>
+
+      <h1>Disciplined trading, <em>on auto pilot.</em></h1>
+
+      <p class="cs__lede">
+        NYUKD Invest is in private beta. Strategy slots, paper-first
+        execution, bring-your-own-broker — open to the public when we
+        ship. Drop your email to be on the waitlist.
+      </p>
+
+      <form class="cs__waitlist" data-waitlist>
+        <input type="email" name="email" placeholder="you@domain.com" required autocomplete="email" />
+        <button type="submit">Notify me</button>
+      </form>
+      <div class="cs__msg" data-msg></div>
+
+      <div class="cs__invited">
+        Already invited? <a href="https://invest.nyukd.com/auth/login">Sign in to NYUKD Invest →</a>
+      </div>
+
+    </main>
+
+    <footer class="cs__foot">© 2026 NYUKD · hello@nyukd.com</footer>
+
+    <script>
+      (function () {
+        var form = document.querySelector("[data-waitlist]");
+        var msg  = document.querySelector("[data-msg]");
+        if (!form || !msg) return;
+        form.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var email = form.querySelector("input[name='email']").value.trim();
+          if (!email) return;
+          var btn = form.querySelector("button");
+          btn.disabled = true;
+          msg.className = "cs__msg";
+          msg.textContent = "Submitting…";
+          fetch("https://invest.nyukd.com/api/auth/local/waitlist", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email }),
+            mode: "cors",
+            credentials: "omit"
+          })
+          .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { status: r.status, data: d }; }); })
+          .then(function (res) {
+            if (res.status >= 200 && res.status < 300) {
+              msg.className = "cs__msg is-success";
+              msg.textContent = "You're on the list. We'll be in touch.";
+              form.querySelector("input[name='email']").value = "";
+            } else {
+              msg.className = "cs__msg is-error";
+              msg.textContent = (res.data && res.data.error) || "Couldn't add you — try again in a moment.";
+            }
+          })
+          .catch(function () {
+            msg.className = "cs__msg is-error";
+            msg.textContent = "Network error — try again in a moment.";
+          })
+          .finally(function () { btn.disabled = false; });
+        });
+      })();
+    </script>
+  </body>
+</html>

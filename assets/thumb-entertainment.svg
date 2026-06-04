@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">Entertainment thumbnail</title>
+  <desc id="desc">AI story studio scene with frames, script lines, and video play marker.</desc>
+  <rect width="720" height="420" rx="34" fill="#190F18"/>
+  <g opacity=".36">
+    <circle cx="158" cy="98" r="120" fill="#A13544"/>
+    <circle cx="590" cy="318" r="150" fill="#0E7C7B"/>
+  </g>
+  <g transform="translate(92 80)">
+    <rect width="210" height="260" rx="28" fill="#F4F2ED"/>
+    <rect x="28" y="34" width="112" height="14" rx="7" fill="#0A0E1A"/>
+    <rect x="28" y="74" width="152" height="10" rx="5" fill="#7A7974"/>
+    <rect x="28" y="100" width="126" height="10" rx="5" fill="#BAB9B4"/>
+    <rect x="28" y="146" width="154" height="72" rx="18" fill="#F3D7DD"/>
+    <circle cx="106" cy="182" r="22" fill="#A13544"/>
+    <path d="M100 170l22 12-22 12z" fill="#F4F2ED"/>
+  </g>
+  <g transform="translate(332 104)">
+    <rect width="296" height="186" rx="30" fill="#0A0E1A" stroke="#F4F2ED" stroke-opacity=".28"/>
+    <path d="M60 64h174M60 106h116M60 148h146" stroke="#F4F2ED" stroke-width="12" stroke-linecap="round" opacity=".8"/>
+    <circle cx="236" cy="64" r="22" fill="#F5B547"/>
+    <path d="M226 64l16-10v20z" fill="#0A0E1A"/>
+  </g>
+</svg>

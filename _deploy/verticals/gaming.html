@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gaming — Three AI-led titles live: Cannon Dodge, Mazes, Lane Chase | NYUKD</title>
+    <meta
+      name="description"
+      content="NYUKD Gaming runs two AI-led tracks — generic titles across arcade, puzzle, racing, story, and social (Cannon Dodge, Mazes, and Lane Chase all playable today), and learning games across mathematics, science, geography, reasoning, and aptitude."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&f[]=jetbrains-mono@400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/app.css" />
+    <style>
+      /* Games strip — page-local rail for the Generic track.
+         Same pattern as pricing / legal pages: page-specific layout lives
+         here; primitives (.card-thumb, .pill, .btn) come from base/app.css. */
+      .games-strip {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(240px, 280px);
+        gap: var(--space-4);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: var(--space-3);
+        margin-top: var(--space-6);
+        scrollbar-color: var(--color-border) transparent;
+      }
+      @media (max-width: 720px) {
+        .games-strip { grid-auto-columns: 80%; }
+      }
+      .game-card {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+        padding: var(--space-4);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        scroll-snap-align: start;
+      }
+      .game-card--live {
+        border-color: var(--color-primary);
+      }
+      .game-card .card-thumb {
+        margin-bottom: 0;
+        position: relative;
+        display: block;
+        background:
+          radial-gradient(120% 80% at 0% 0%, rgba(61, 217, 214, 0.06), transparent 60%),
+          var(--color-surface-offset);
+      }
+      .game-card--live .card-thumb {
+        background:
+          radial-gradient(120% 80% at 0% 0%, rgba(61, 217, 214, 0.22), transparent 60%),
+          radial-gradient(80% 80% at 100% 100%, rgba(245, 181, 71, 0.14), transparent 60%),
+          var(--color-surface-offset);
+        border-color: var(--color-primary);
+      }
+      .game-card .card-thumb .pill {
+        position: absolute;
+        top: var(--space-3);
+        left: var(--space-3);
+      }
+      .game-card h3 {
+        font-family: var(--font-display);
+        font-size: var(--text-lg);
+        margin: 0;
+      }
+      .game-card > p {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        margin: 0;
+        flex: 1;
+      }
+      .game-card .btn {
+        align-self: flex-start;
+        margin-top: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+    <div data-slot="header"></div>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container page-hero__inner">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">NYUKD</a>
+            <span class="sep">/</span>
+            <span>Gaming</span>
+          </nav>
+          <span class="eyebrow">Practice 05 · Two tracks · Three titles live</span>
+          <h1 style="margin-top: var(--space-4)">
+            Games built faster with <em style="color: var(--color-primary); font-style: normal;">AI-led</em> development.
+          </h1>
+          <p class="lede">
+            NYUKD Gaming runs two parallel tracks. One ships polished generic titles —
+            arcade, puzzle, racing, story, social — with Cannon Dodge, Mazes, and Lane
+            Chase all playable today. The other turns mathematics, science, geography,
+            reasoning, and aptitude into playable learning experiences. AI leads rapid
+            prototyping, level generation, and feedback loops; human design keeps each
+            experience worth playing.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Track 01 · Generic games · Three titles live</span>
+              <h2 style="margin-top: var(--space-3)">Arcade. Puzzle. Racing. Story. Social.</h2>
+            </div>
+            <p>
+              Quality over coverage. Each title is a polished browser game — no install,
+              no store. AI leads the prototype; the human team ships the craft. Three
+              playable titles in, more on the way.
+            </p>
+          </div>
+
+          <div class="games-strip" role="list" aria-label="Generic games catalogue">
+            <article class="game-card game-card--live" role="listitem">
+              <div class="card-thumb" aria-hidden="true">
+                <span class="pill pill--accent">● Live</span>
+              </div>
+              <span class="eyebrow">Arcade</span>
+              <h3>Cannon Dodge</h3>
+              <p>Pick a fighter. Dodge cannon fire. Collect power-ups. Beat the boss — in your browser.</p>
+              <a class="btn btn--primary" href="https://cannondodge.nyukd.com">Play now <span class="arrow">→</span></a>
+            </article>
+
+            <article class="game-card game-card--live" role="listitem">
+              <div class="card-thumb" aria-hidden="true">
+                <span class="pill pill--accent">● Live</span>
+              </div>
+              <span class="eyebrow">Puzzle</span>
+              <h3>Mazes</h3>
+              <p>Top-down procedural dungeon runner. Pick a character, find the exit, collect keys for bonus time.</p>
+              <a class="btn btn--primary" href="https://maze.nyukd.com">Play now <span class="arrow">→</span></a>
+            </article>
+
+            <article class="game-card" role="listitem">
+              <div class="card-thumb" aria-hidden="true">
+                <span class="pill">Soon</span>
+              </div>
+              <span class="eyebrow">Story</span>
+              <h3>Title TBA</h3>
+              <p>A choice-driven short story you finish in one sitting.</p>
+            </article>
+
+            <article class="game-card" role="listitem">
+              <div class="card-thumb" aria-hidden="true">
+                <span class="pill">Soon</span>
+              </div>
+              <span class="eyebrow">Social</span>
+              <h3>Title TBA</h3>
+              <p>Casual lobby play. Drop in, drop out, beat your friends.</p>
+            </article>
+
+            <article class="game-card" role="listitem">
+              <div class="card-thumb" aria-hidden="true">
+                <span class="pill">Soon</span>
+              </div>
+              <span class="eyebrow">Strategy</span>
+              <h3>Title TBA</h3>
+              <p>Light strategy. Short rounds. Real decisions.</p>
+            </article>
+
+            <article class="game-card game-card--live" role="listitem">
+              <div class="card-thumb" aria-hidden="true">
+                <span class="pill pill--accent">● Live</span>
+              </div>
+              <span class="eyebrow">Racing</span>
+              <h3>Lane Chase</h3>
+              <p>4-lane arcade racer. 20 cars, 20 city circuits. Weave through traffic, grab power-ups, hit the finish.</p>
+              <a class="btn btn--primary" href="https://lanechase.nyukd.com">Play now <span class="arrow">→</span></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="background: var(--color-surface-offset);">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Track 02 · Learning games · Coming soon</span>
+              <h2 style="margin-top: var(--space-3)">Five learning lanes. Real game design.</h2>
+            </div>
+            <p>
+              Each lane has a learning goal and a game mechanic. AI leads the generation of
+              variants, hints, and scenarios; the standard remains real play, not gamified
+              worksheets.
+            </p>
+          </div>
+          <img class="section-visual" src="../assets/thumb-gaming.svg?v=2" alt="Abstract AI-led learning game visual" style="margin-bottom: var(--space-8);" />
+          <div class="feature-list" style="grid-template-columns: repeat(5, 1fr); gap: var(--space-4);">
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M12 5v14"/></svg>
+              </div>
+              <h3>Mathematics</h3>
+              <p>Number sense, geometry, probability — by play.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+              </div>
+              <h3>Science</h3>
+              <p>Forces, biology, chemistry — through experiments.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>
+              </div>
+              <h3>Geography</h3>
+              <p>Place, climate, trade — by exploration.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 11V7a3 3 0 1 1 6 0v4M5 11h14v10H5z"/></svg>
+              </div>
+              <h3>Reasoning</h3>
+              <p>Logic, deduction, pattern — by puzzles.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="3 6 9 12 3 18"/><line x1="13" y1="18" x2="21" y2="18"/></svg>
+              </div>
+              <h3>Aptitude</h3>
+              <p>Memory, attention, problem-solving — by craft.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="container">
+          <div class="coming-soon">
+            <span class="ticker"><span class="pulse-dot">●</span> Build status — Generic Phase 01 · 3 titles shipped · Learning Phase 04 pilot</span>
+            <h2>Three playable titles in. The catalogue keeps growing.</h2>
+            <p>
+              Cannon Dodge, Mazes, and Lane Chase are all live. Learning lanes follow the
+              same rule — one well-made title at a time, in browser, before the catalogue
+              opens.
+            </p>
+            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+              <a class="btn btn--primary" href="../index.html#waitlist">Get the playtest invite <span class="arrow">→</span></a>
+              <a class="btn btn--secondary" href="mailto:gaming@nyukd.com?subject=Nyukd%20Gaming%20pilot">Suggest a concept</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-slot="footer"></div>
+
+    <script src="../js/partials.js"></script>
+    <script>
+      window.NYUKD.mount({ base: '../', current: 'gaming' });
+    </script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

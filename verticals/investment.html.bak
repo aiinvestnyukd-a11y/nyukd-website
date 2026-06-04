@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Investment — AI-led trading performance | NYUKD</title>
+    <meta
+      name="description"
+      content="Investment is the first NYUKD rollout track, focused on AI-led trading, transparent strategy performance, risk controls, and a future live dashboard."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&f[]=jetbrains-mono@400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/app.css" />
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+    <div data-slot="header"></div>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container page-hero__inner">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">NYUKD</a>
+            <span class="sep">/</span>
+            <span>Investment</span>
+          </nav>
+          <span class="eyebrow">Practice 01 · First focus</span>
+          <h1 style="margin-top: var(--space-4)">
+            Investment, led by <em style="color: var(--color-primary); font-style: normal;">AI trading</em> discipline.
+          </h1>
+          <p class="lede">
+            Investment is the first rollout track. The scope is AI-led trading: strategy design,
+            risk rules, execution discipline, and a dashboard that will show real performance
+            once live trading begins.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="split-layout">
+            <div>
+              <img class="section-visual" src="../assets/thumb-investment.svg" alt="Abstract AI-led trading performance dashboard visual" />
+            </div>
+            <div>
+              <span class="eyebrow">What starts first</span>
+              <h2 style="margin-top: var(--space-3)">Start with transparent performance.</h2>
+              <p>
+                The first public output should make the strategy understandable before it asks
+                for trust. The page will evolve into a dashboard that reports AI-led trading
+                performance, drawdown, win rate, exposure, and rule changes with clear dates.
+              </p>
+              <div class="feature-list feature-list--compact">
+                <div class="feature">
+                  <h3>AI-led strategy logic</h3>
+                  <p>Clear explanation of the signals, market universe, time horizon, and trade rules.</p>
+                </div>
+                <div class="feature">
+                  <h3>Risk before return</h3>
+                  <p>Position sizing, drawdown limits, stop rules, and human oversight defined before launch.</p>
+                </div>
+                <div class="feature">
+                  <h3>Live performance dashboard</h3>
+                  <p>Real results will be reported with timestamps, benchmark context, and transparent caveats.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="background: var(--color-surface-offset);">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Dashboard scope</span>
+              <h2 style="margin-top: var(--space-3)">What the trading dashboard will show.</h2>
+            </div>
+            <p>
+              The initial dashboard will be a performance surface, not a promise. It should help
+              visitors understand how the AI-led strategy is behaving, where it is exposed, and
+              whether it is following its own rules.
+            </p>
+          </div>
+          <div class="kpi-strip" style="grid-template-columns: repeat(4, 1fr); margin-top: var(--space-8);">
+            <div class="kpi">
+              <div class="kpi__value tabular">P/L</div>
+              <div class="kpi__label">Real strategy performance</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__value tabular">DD</div>
+              <div class="kpi__label">Drawdown and risk limits</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__value tabular">WR</div>
+              <div class="kpi__label">Win rate and trade quality</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__value tabular">LOG</div>
+              <div class="kpi__label">Strategy changes and audit trail</div>
+            </div>
+          </div>
+          <p style="margin-top: var(--space-5); color: var(--color-text-faint); font-size: var(--text-sm); max-width: 76ch;">
+            This dashboard is planned as transparent performance reporting for NYUKD's own
+            AI-led strategy work. It is not financial advice, a signal service, or a promise of
+            future returns.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section--tight" id="launch">
+        <div class="container">
+          <div class="coming-soon coming-soon--live">
+            <span class="ticker ticker--live"><span class="pulse-dot pulse-dot--live">●</span> Live beta — Phase 01 shipping</span>
+            <h2>The dashboard is open. <em style="color: var(--color-primary); font-style: normal;">Sign in to use it.</em></h2>
+            <p>
+              Four quantitative strategies — Alpha, Beta, Gamma, Delta — running on paper
+              accounts at Alpaca and eToro Demo. Performance, regime scoring, and a
+              live stock picker are visible to everyone. Operator controls (start, stop,
+              risk overrides) require an account.
+            </p>
+            <div class="invest-cta-grid">
+              <a class="btn btn--primary invest-cta__primary"
+                 href="#" data-invest-launch
+                 target="_blank" rel="noopener">
+                Sign in to InvestAI <span class="arrow">→</span>
+              </a>
+              <a class="btn btn--secondary invest-cta__secondary"
+                 href="#" data-invest-signup
+                 target="_blank" rel="noopener">
+                Create a free account
+              </a>
+              <a class="btn btn--ghost invest-cta__demo"
+                 href="#" data-invest-demo
+                 target="_blank" rel="noopener">
+                Browse the demo — no signup
+              </a>
+            </div>
+            <ul class="invest-features">
+              <li>
+                <span class="invest-features__label">Public</span>
+                <span class="invest-features__text">Performance dashboard · Stock Picker (first 5 minutes live) · Control Panel (read-only)</span>
+              </li>
+              <li>
+                <span class="invest-features__label">Account</span>
+                <span class="invest-features__text">7-day live Stock Picker trial · Notifications · Personal filters and watchlists</span>
+              </li>
+              <li>
+                <span class="invest-features__label">Operator</span>
+                <span class="invest-features__text">Start / stop bots · Override risk parameters · Run recalibration and auto-tune</span>
+              </li>
+            </ul>
+            <p class="invest-cta__fineprint">
+              Paper trading only. Not investment advice. The dashboard reports the
+              behaviour of NYUKD's own AI-led strategies — not personalised
+              recommendations.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <script>
+        // CTA wiring — read the single source-of-truth URL from partials.js
+        // (set on window.NYUKD_INVEST_APP_URL). Update one constant when the
+        // dashboard URL changes; every button here picks it up.
+        (function () {
+          var url = window.NYUKD_INVEST_APP_URL || 'http://127.0.0.1:8080/welcome';
+          // Default lands on the product's /welcome page which shows the
+          // sign-in modal. ?mode=signup pre-selects Create Account.
+          document.querySelectorAll('[data-invest-launch]').forEach(function (a) { a.href = url; });
+          document.querySelectorAll('[data-invest-signup]').forEach(function (a) { a.href = url + '?mode=signup'; });
+          document.querySelectorAll('[data-invest-demo]').forEach(function (a) {
+            // The demo path skips the landing and goes straight to the
+            // Performance dashboard so visitors see real data instantly.
+            a.href = url.replace('/welcome', '/performance');
+          });
+        })();
+      </script>
+    </main>
+
+    <div data-slot="footer"></div>
+
+    <script src="../js/partials.js"></script>
+    <script>
+      window.NYUKD.mount({ base: '../', current: 'investment' });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

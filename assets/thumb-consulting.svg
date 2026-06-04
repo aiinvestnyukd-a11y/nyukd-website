@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">Consulting thumbnail</title>
+  <desc id="desc">Process transformation map with AI operating model nodes.</desc>
+  <rect width="720" height="420" rx="34" fill="#F4F2ED"/>
+  <g stroke="#0A0E1A" stroke-width="2" opacity=".14">
+    <path d="M68 88h584M68 182h584M68 276h584"/>
+  </g>
+  <g fill="#FFFFFF" stroke="#D4D1CA" stroke-width="2">
+    <rect x="82" y="104" width="138" height="88" rx="22"/>
+    <rect x="292" y="70" width="150" height="104" rx="24"/>
+    <rect x="500" y="126" width="132" height="88" rx="22"/>
+    <rect x="126" y="250" width="160" height="96" rx="24"/>
+    <rect x="396" y="238" width="178" height="104" rx="24"/>
+  </g>
+  <g fill="none" stroke="#0E7C7B" stroke-width="8" stroke-linecap="round">
+    <path d="M220 148h72"/>
+    <path d="M442 122l58 38"/>
+    <path d="M560 214l-84 24"/>
+    <path d="M396 290H286"/>
+  </g>
+  <g fill="#0A0E1A">
+    <rect x="114" y="138" width="70" height="12" rx="6"/>
+    <rect x="326" y="104" width="82" height="12" rx="6"/>
+    <rect x="530" y="160" width="72" height="12" rx="6"/>
+    <rect x="164" y="286" width="82" height="12" rx="6"/>
+    <rect x="434" y="274" width="104" height="12" rx="6"/>
+  </g>
+  <circle cx="367" cy="228" r="42" fill="#0A0E1A"/>
+  <path d="M347 242v-28l38 38v-38" fill="none" stroke="#F4F2ED" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="385" cy="252" r="5" fill="#3DD9D6"/>
+</svg>

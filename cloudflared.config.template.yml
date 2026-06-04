@@ -1,0 +1,18 @@
+# cloudflared config template for the nyukd-invest tunnel.
+#
+# Copy this to ~/.cloudflared/config.yml, then replace the two UUID
+# placeholders with the actual tunnel ID you got from
+#   cloudflared tunnel create nyukd-invest
+#
+# (See DEPLOY.md, Phase 5b.)
+
+tunnel: REPLACE_WITH_TUNNEL_UUID
+credentials-file: /Users/nyukd/.cloudflared/REPLACE_WITH_TUNNEL_UUID.json
+
+ingress:
+  # All traffic for app.nyukd.com → the Dashboard running on this Mac.
+  - hostname: app.nyukd.com
+    service: http://127.0.0.1:8080
+
+  # Catch-all required by cloudflared: anything else gets 404.
+  - service: http_status:404
