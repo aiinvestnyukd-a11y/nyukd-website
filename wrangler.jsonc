@@ -1,0 +1,17 @@
+{
+  // Cloudflare Workers Static Assets config for the NYUKD marketing site.
+  // The repo root contains source files PLUS large MP4 originals + .git history,
+  // which collectively exceed the 25 MiB-per-asset Workers limit. The lean
+  // production mirror is maintained in _deploy/ (under 100 MiB total, largest
+  // file ~21 MiB), so we point the assets directory at that folder.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nyukd-website-auto",
+  "compatibility_date": "2026-06-15",
+  "assets": {
+    "directory": "./_deploy",
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
