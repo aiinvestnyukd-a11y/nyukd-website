@@ -23,6 +23,92 @@
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/app.css" />
+    <style>
+      /* Launch countdown banner — sits above the hero on the homepage.
+         Counts down to NYUKD.com go-live (15 July 2026). Links to the
+         pipeline page where the per-practice kanbans live. */
+      .launch-banner {
+        background: linear-gradient(
+          90deg,
+          color-mix(in srgb, var(--color-primary) 12%, var(--color-surface)) 0%,
+          var(--color-surface) 60%
+        );
+        border-bottom: 1px solid var(--color-border);
+        padding: var(--space-3) 0;
+      }
+      .launch-banner__inner {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: var(--space-4);
+        align-items: center;
+      }
+      .launch-banner__copy {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+      .launch-banner__title {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+        margin: 0;
+      }
+      .launch-banner__date {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        color: var(--color-text-faint);
+      }
+      .launch-banner__digits {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-3);
+        font-variant-numeric: tabular-nums;
+      }
+      .launch-banner__group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 48px;
+      }
+      .launch-banner__num {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
+        line-height: 1;
+        letter-spacing: -0.015em;
+        color: var(--color-primary);
+      }
+      .launch-banner__unit {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--color-text-faint);
+        margin-top: 0.3rem;
+      }
+      .launch-banner__link {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .launch-banner__link:hover { text-decoration: underline; }
+      .launch-banner.is-shipped .launch-banner__num { color: var(--color-success); }
+      @media (max-width: 720px) {
+        .launch-banner__inner { grid-template-columns: 1fr; text-align: center; }
+        .launch-banner__copy { align-items: center; }
+        .launch-banner__digits { justify-content: center; }
+      }
+    </style>
   </head>
   <body>
     <a class="sr-only" href="#main">Skip to content</a>
@@ -68,6 +154,26 @@
     </header>
 
     <main id="main">
+      <!-- LAUNCH COUNTDOWN -->
+      <section class="launch-banner" id="launch-banner" data-target="2026-07-15T00:00:00Z" aria-label="NYUKD.com go-live countdown">
+        <div class="container launch-banner__inner">
+          <div class="launch-banner__copy">
+            <span class="launch-banner__title">
+              <span class="status-dot" aria-hidden="true"></span>
+              NYUKD.com go-live
+            </span>
+            <span class="launch-banner__date">Target · 15 July 2026</span>
+          </div>
+          <div class="launch-banner__digits">
+            <span class="launch-banner__group"><span class="launch-banner__num" data-unit="days">--</span><span class="launch-banner__unit">days</span></span>
+            <span class="launch-banner__group"><span class="launch-banner__num" data-unit="hours">--</span><span class="launch-banner__unit">hrs</span></span>
+            <span class="launch-banner__group"><span class="launch-banner__num" data-unit="minutes">--</span><span class="launch-banner__unit">min</span></span>
+            <span class="launch-banner__group"><span class="launch-banner__num" data-unit="seconds">--</span><span class="launch-banner__unit">sec</span></span>
+          </div>
+          <a class="launch-banner__link" href="verticals/pipeline.html">See the pipeline →</a>
+        </div>
+      </section>
+
       <!-- HERO -->
       <section class="hero">
         <div class="container hero__inner">
@@ -747,6 +853,32 @@
   });
 })();
 
+// Launch countdown — drives the .launch-banner widget at the top of the page.
+(function () {
+  var w = document.getElementById('launch-banner');
+  if (!w) return;
+  var target = new Date(w.dataset.target).getTime();
+  function set(unit, value) {
+    var el = w.querySelector('[data-unit="' + unit + '"]');
+    if (el) el.textContent = value;
+  }
+  function tick() {
+    var diff = target - Date.now();
+    if (diff <= 0) {
+      w.classList.add('is-shipped');
+      ['days','hours','minutes','seconds'].forEach(function (u) { set(u, '00'); });
+      var t = w.querySelector('.launch-banner__title');
+      if (t) t.textContent = 'NYUKD.com is live';
+      return;
+    }
+    set('days',    String(Math.floor(diff / 86400000)).padStart(2, '0'));
+    set('hours',   String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0'));
+    set('minutes', String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0'));
+    set('seconds', String(Math.floor((diff % 60000) / 1000)).padStart(2, '0'));
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
 
 </script></body>
 </html>
