@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NYUKD Launch Kanban — 16 July 2026</title>
+  <style>
+    :root {
+      --bg: #0A0E1A;
+      --surface: #11162a;
+      --surface-2: #1a2138;
+      --border: #2a3050;
+      --text: #F5F5F7;
+      --muted: #9ba0b8;
+      --faint: #6B7280;
+      --primary: #FFB547;
+      --indigo: #6D44D0;
+      --green: #4ade80;
+      --red: #f87171;
+      --cyan: #22d3ee;
+      --pink: #ec4899;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+      background: var(--surface);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    h1 { font-size: 20px; font-weight: 800; margin: 0; letter-spacing: -0.02em; }
+    h1 .accent { color: var(--primary); }
+    .countdown-box {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .countdown-box .big {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 18px;
+      font-family: ui-monospace, monospace;
+    }
+    .countdown-box .target { color: var(--text); font-weight: 600; }
+    .filters { margin-left: auto; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .filter-btn, .action-btn {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 150ms;
+      font-family: inherit;
+    }
+    .filter-btn.active { background: var(--primary); color: var(--bg); border-color: var(--primary); font-weight: 700; }
+    .filter-btn:hover:not(.active), .action-btn:hover { border-color: var(--primary); }
+    .action-btn { color: var(--muted); }
+    .legend {
+      padding: 10px 24px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      align-items: center;
+    }
+    .swatch { display: inline-flex; align-items: center; gap: 6px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(240px, 1fr));
+      gap: 12px;
+      padding: 16px;
+      overflow-x: auto;
+      align-items: start;
+    }
+    .col {
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 360px;
+      border: 1px solid transparent;
+      transition: border-color 120ms;
+    }
+    .col.drag-over { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 5%, var(--surface)); }
+    .col h3 {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 0 0 4px 0;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+    }
+    .col-count {
+      color: var(--faint);
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .add-btn {
+      background: transparent;
+      border: 1px dashed var(--border);
+      color: var(--muted);
+      padding: 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      font-family: inherit;
+      margin-top: 4px;
+    }
+    .add-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px;
+      cursor: grab;
+      transition: all 120ms;
+      position: relative;
+    }
+    .card:active { cursor: grabbing; }
+    .card:hover { border-color: var(--primary); transform: translateY(-1px); }
+    .card.dragging { opacity: 0.35; }
+    .card-head { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .pill {
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .pill.entertainment { background: rgba(255,181,71,0.16); color: var(--primary); }
+    .pill.infotainment { background: rgba(109,68,208,0.20); color: #b497f0; }
+    .theme {
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 3px;
+      display: inline-block;
+      opacity: 0.85;
+    }
+    .theme[data-t="Survival"] { background: rgba(255,181,71,0.12); color: var(--primary); }
+    .theme[data-t="Heroes"] { background: rgba(248,113,113,0.14); color: var(--red); }
+    .theme[data-t="Phenomena"] { background: rgba(109,68,208,0.20); color: #b497f0; }
+    .theme[data-t="Records"] { background: rgba(74,222,128,0.14); color: var(--green); }
+    .theme[data-t="Curiosities"] { background: rgba(34,211,238,0.14); color: var(--cyan); }
+    .theme[data-t="Adoption"] { background: rgba(255,181,71,0.12); color: var(--primary); }
+    .theme[data-t="Leadership"] { background: rgba(248,113,113,0.14); color: var(--red); }
+    .theme[data-t="Strategy"] { background: rgba(109,68,208,0.20); color: #b497f0; }
+    .theme[data-t="Tactics"] { background: rgba(74,222,128,0.14); color: var(--green); }
+    .theme[data-t="Risk"] { background: rgba(34,211,238,0.14); color: var(--cyan); }
+    .theme[data-t="Build-in-Public"] { background: rgba(236,72,153,0.16); color: var(--pink); }
+    .theme[data-t="AI Update"] { background: rgba(155,160,184,0.20); color: var(--muted); }
+    .card-title { font-weight: 600; font-size: 13px; margin: 6px 0 2px 0; line-height: 1.3; }
+    .card-sub { font-size: 11px; color: var(--muted); margin: 0 0 4px 0; }
+    .card-notes { font-size: 11px; color: var(--faint); margin-top: 6px; font-style: italic; line-height: 1.35; }
+    .card-actions {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      display: flex;
+      gap: 4px;
+      opacity: 0;
+      transition: opacity 120ms;
+    }
+    .card:hover .card-actions { opacity: 1; }
+    .icon-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .icon-btn:hover { color: var(--red); border-color: var(--red); }
+    .empty-msg { color: var(--faint); font-size: 11px; font-style: italic; padding: 8px; text-align: center; }
+    /* Modal for add/edit */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .modal-backdrop.show { display: flex; }
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      width: min(500px, 92vw);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .modal h2 { margin: 0; font-size: 16px; }
+    .modal label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .modal input, .modal select, .modal textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius: 6px;
+      font: inherit;
+      font-size: 13px;
+    }
+    .modal textarea { min-height: 70px; resize: vertical; }
+    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
+    .modal-actions .action-btn { padding: 8px 16px; }
+    .modal-actions .primary { background: var(--primary); color: var(--bg); border-color: var(--primary); font-weight: 700; }
+    @media (max-width: 1100px) {
+      .board { grid-template-columns: repeat(7, 260px); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NYUKD Launch <span class="accent">Kanban</span></h1>
+    <div class="countdown-box">
+      <span class="target">Target: 16 July 2026</span>
+      <span class="big" id="daysLeft">—</span>
+      <span>days to social-media launch</span>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="entertainment">Entertainment</button>
+      <button class="filter-btn" data-filter="infotainment">Infotainment</button>
+      <button class="action-btn" id="resetBtn" title="Reset board to seed">↻ Reset</button>
+    </div>
+  </header>
+  <div class="legend">
+    <strong style="color:var(--muted)">Themes:</strong>
+    <span class="swatch"><span class="dot" style="background:var(--primary)"></span> Survival / Adoption</span>
+    <span class="swatch"><span class="dot" style="background:var(--red)"></span> Heroes / Leadership</span>
+    <span class="swatch"><span class="dot" style="background:#b497f0"></span> Phenomena / Strategy</span>
+    <span class="swatch"><span class="dot" style="background:var(--green)"></span> Records / Tactics</span>
+    <span class="swatch"><span class="dot" style="background:var(--cyan)"></span> Curiosities / Risk</span>
+    <span class="swatch"><span class="dot" style="background:var(--pink)"></span> Build-in-Public</span>
+  </div>
+  <div class="board" id="board"></div>
+
+  <div class="modal-backdrop" id="modal">
+    <div class="modal">
+      <h2 id="modalTitle">Add card</h2>
+      <div>
+        <label>Pillar</label>
+        <select id="m_pillar">
+          <option value="entertainment">Entertainment</option>
+          <option value="infotainment">Infotainment</option>
+        </select>
+      </div>
+      <div>
+        <label>Theme</label>
+        <select id="m_theme">
+          <optgroup label="Entertainment">
+            <option>Survival</option><option>Heroes</option><option>Phenomena</option>
+            <option>Records</option><option>Curiosities</option>
+          </optgroup>
+          <optgroup label="Infotainment">
+            <option>Adoption</option><option>Leadership</option><option>Strategy</option>
+            <option>Tactics</option><option>Risk</option>
+            <option>AI Update</option><option>Build-in-Public</option>
+          </optgroup>
+        </select>
+      </div>
+      <div>
+        <label>Title</label>
+        <input id="m_title" placeholder="e.g. The man who survived two atomic bombs" />
+      </div>
+      <div>
+        <label>Subtitle (optional)</label>
+        <input id="m_sub" placeholder="e.g. Tsutomu Yamaguchi · 1945" />
+      </div>
+      <div>
+        <label>Notes (optional)</label>
+        <textarea id="m_notes" placeholder="Sources, status, ideas…"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="action-btn" id="m_cancel">Cancel</button>
+        <button class="action-btn primary" id="m_save">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const COLS = [
+      { id: 'backlog',    name: 'Backlog' },
+      { id: 'brief',      name: 'Brief' },
+      { id: 'clips',      name: 'Clip Gen' },
+      { id: 'assemble',   name: 'Assemble' },
+      { id: 'review',     name: 'Review' },
+      { id: 'weblive',    name: 'Web Live' },
+      { id: 'sociallive', name: 'Social Live' },
+    ];
+    const LAUNCH = new Date('2026-07-16T00:00:00');
+    const STORAGE_KEY = 'nyukd_launch_kanban_v1';
+
+    const SEED = [
+      // ── ENTERTAINMENT — already produced (global, before India pivot) ──
+      { id:'ent-koepcke', pillar:'entertainment', theme:'Survival',
+        title:'She fell 2 miles into the Amazon',
+        sub:'Juliane Koepcke · 1971',
+        notes:'EP_koepcke_DRAFT.mp4 · live on Watch library, pending Cloudflare deploy',
+        status:'weblive' },
+      { id:'ent-sullivan', pillar:'entertainment', theme:'Phenomena',
+        title:'The man lightning could not kill',
+        sub:'Roy Sullivan · 1942–1977',
+        notes:'EP_sullivan_DRAFT.mp4 · live on Watch library, pending Cloudflare deploy',
+        status:'weblive' },
+      { id:'ent-yamaguchi', pillar:'entertainment', theme:'Survival',
+        title:'The man who survived both atomic bombs',
+        sub:'Tsutomu Yamaguchi · 1945',
+        notes:'EP_yamaguchi_DRAFT.mp4 · live on Watch library, pending Cloudflare deploy',
+        status:'weblive' },
+
+      // ── ENTERTAINMENT — INDIA: Heroes & Determination ───────────
+      { id:'ent-manjhi', pillar:'entertainment', theme:'Heroes',
+        title:'🇮🇳 He carved a road through a mountain — for 22 years',
+        sub:'Dashrath Manjhi · "Mountain Man" · Bihar · 1960–1982',
+        notes:'EP_manjhi_DRAFT.mp4 · first India-led episode · live on Watch library, pending Cloudflare deploy',
+        status:'weblive' },
+      { id:'ent-sinha', pillar:'entertainment', theme:'Survival',
+        title:'🇮🇳 Thrown from a train, lost a leg, summited Everest',
+        sub:'Arunima Sinha · 2011 → 2013',
+        notes:'National volleyball player robbed and thrown from a moving train; lost a leg; summited Everest with a prosthetic. Padma Shri.',
+        status:'backlog' },
+      { id:'ent-payeng', pillar:'entertainment', theme:'Heroes',
+        title:'🇮🇳 He planted a 1,360-acre forest by himself',
+        sub:'Jadav Payeng · "The Forest Man" · Assam · 1979 → today',
+        notes:'30+ years of solo planting on a Brahmaputra sandbar. Now home to tigers, elephants, rhinos. Padma Shri.',
+        status:'backlog' },
+      { id:'ent-padman', pillar:'entertainment', theme:'Heroes',
+        title:'🇮🇳 The man who tested sanitary pads on himself',
+        sub:'Arunachalam Muruganantham · "Padman" · Tamil Nadu',
+        notes:'School dropout invented affordable pad-making machine; transformed rural women\'s hygiene. Padma Shri 2016. Biopic 2018.',
+        status:'backlog' },
+      { id:'ent-wangchuk', pillar:'entertainment', theme:'Heroes',
+        title:'🇮🇳 He builds glaciers to fight a water crisis',
+        sub:'Sonam Wangchuk · Ladakh · "Ice Stupas"',
+        notes:'Engineer/innovator; partial inspiration for "Three Idiots". Builds artificial glaciers that release meltwater in spring.',
+        status:'backlog' },
+      { id:'ent-anandKumar', pillar:'entertainment', theme:'Heroes',
+        title:'🇮🇳 He teaches 30 poor kids to crack IIT — every year',
+        sub:'Anand Kumar · "Super 30" · Patna',
+        notes:'Maths teacher; 500+ Super 30 alumni into IIT since 2002. Biopic 2019.',
+        status:'backlog' },
+      { id:'ent-kurien', pillar:'entertainment', theme:'Heroes',
+        title:'🇮🇳 The dairy revolution that fed a nation',
+        sub:'Verghese Kurien · "Father of the White Revolution"',
+        notes:'Led Operation Flood; turned India from milk-deficient to the world\'s largest milk producer. Founded Amul.',
+        status:'backlog' },
+
+      // ── ENTERTAINMENT — INDIA: Records & Firsts ─────────────────
+      { id:'ent-maryKom', pillar:'entertainment', theme:'Records',
+        title:'🇮🇳 Six-time world champion — from a Manipuri rice field',
+        sub:'M.C. Mary Kom · boxing',
+        notes:'Six-time AIBA World Champion; only Indian woman boxer to qualify for the Olympics. Padma Vibhushan 2020.',
+        status:'backlog' },
+      { id:'ent-milkha', pillar:'entertainment', theme:'Records',
+        title:'🇮🇳 He outran the memory of Partition',
+        sub:'Milkha Singh · "The Flying Sikh" · Rome 1960',
+        notes:'Family killed in Partition violence; ran his way to a near-medal at Rome 1960. Autobiography + biopic.',
+        status:'backlog' },
+      { id:'ent-anandi', pillar:'entertainment', theme:'Records',
+        title:'🇮🇳 India\'s first woman doctor — in 1886',
+        sub:'Anandi Gopal Joshi · Philadelphia 1886',
+        notes:'Earned a medical degree at a time of brutal social opposition; died at 21, months after returning home.',
+        status:'backlog' },
+      { id:'ent-bachendri', pillar:'entertainment', theme:'Records',
+        title:'🇮🇳 First Indian woman on top of Everest',
+        sub:'Bachendri Pal · 23 May 1984',
+        notes:'Summited at 29; led the first all-women team to Everest base camp in 1993. Padma Shri.',
+        status:'backlog' },
+      { id:'ent-dhyanChand', pillar:'entertainment', theme:'Records',
+        title:'🇮🇳 The hockey wizard who said no to Hitler',
+        sub:'Dhyan Chand · Berlin Olympics 1936',
+        notes:'Led India to Olympic gold; Hitler reportedly offered him German citizenship + army rank — he refused.',
+        status:'backlog' },
+
+      // ── ENTERTAINMENT — INDIA: Mysteries & Wonders ──────────────
+      { id:'ent-roopkund', pillar:'entertainment', theme:'Phenomena',
+        title:'🇮🇳 The Himalayan lake of 800 skeletons',
+        sub:'Roopkund Lake · Uttarakhand · 5,000 m',
+        notes:'2019 DNA analysis revealed at least 3 distinct genetic groups across ~1,000 years. Genuine ongoing mystery.',
+        status:'backlog' },
+      { id:'ent-rootBridges', pillar:'entertainment', theme:'Phenomena',
+        title:'🇮🇳 The bridges that take 100 years to grow',
+        sub:'Living Root Bridges · Meghalaya',
+        notes:'Khasi tribes grow Ficus elastica roots across rivers; some bridges 500+ years old, hold 50+ people.',
+        status:'backlog' },
+      { id:'ent-bose', pillar:'entertainment', theme:'Phenomena',
+        title:'🇮🇳 The freedom fighter who vanished',
+        sub:'Subhas Chandra Bose · 18 August 1945',
+        notes:'Officially a plane crash in Taipei — but no body found, and multiple commissions disputed the verdict for decades.',
+        status:'backlog' },
+      { id:'ent-magneticHill', pillar:'entertainment', theme:'Phenomena',
+        title:'🇮🇳 The Himalayan hill that pulls cars uphill',
+        sub:'Magnetic Hill · Ladakh',
+        notes:'Optical illusion / gravity hill — cars in neutral appear to roll up. Verified phenomenon; great explainer beat.',
+        status:'backlog' },
+
+      // ── ENTERTAINMENT — INDIA: Curiosities ──────────────────────
+      { id:'ent-shaniShingnapur', pillar:'entertainment', theme:'Curiosities',
+        title:'🇮🇳 The Indian village with no doors',
+        sub:'Shani Shingnapur · Maharashtra',
+        notes:'No house, shop or temple has doors. Faith in Lord Shani protecting the village. Reported by BBC, NYT.',
+        status:'backlog' },
+
+      // ── ENTERTAINMENT — GLOBAL (the 20%): merit-picked international stories ──
+      { id:'ent-petrov', pillar:'entertainment', theme:'Heroes',
+        title:'The man who saved the world',
+        sub:'Stanislav Petrov · Soviet early-warning post · 1983',
+        notes:'Ignored a false-alarm nuclear strike; quietly averted retaliation. Verified, declassified by the Russian government, Dresden Peace Prize 2013.',
+        status:'backlog' },
+      { id:'ent-tunguska', pillar:'entertainment', theme:'Phenomena',
+        title:'The 1908 Siberian explosion',
+        sub:'Tunguska Event · 30 June 1908',
+        notes:'2,000 km² of forest flattened by an airburst meteor/comet; no impact crater. Pure phenomenon (no person to render). Universally fascinating.',
+        status:'backlog' },
+
+      // ── INFOTAINMENT — already shipped ──────────────────────────
+      { id:'info-pilot-to-adoption', pillar:'infotainment', theme:'Adoption',
+        title:'From AI pilot to real adoption',
+        sub:'9:16 · 56 sec · NYUKD InvestAI / transformation lens',
+        notes:'Existing May-7 render; live on Watch library, pending Cloudflare deploy',
+        status:'weblive' },
+      { id:'info-daily-news', pillar:'infotainment', theme:'AI Update',
+        title:'"Today in AI" — daily news section',
+        sub:'5-card feed on infotainment.html · refreshed via bin/refresh_ai_news.py',
+        notes:'Live; reads assets/data/ai_news.json with inline fallback. Daily refresh via launchd or GitHub Actions — see CLOUDFLARE_DEPLOY.md',
+        status:'weblive' },
+
+      // ── INFOTAINMENT — Transformation T-series ──────────────────
+      { id:'info-t1', pillar:'infotainment', theme:'Adoption',
+        title:'The 60% problem',
+        sub:'T1 · why most AI pilots stall after launch',
+        notes:'Seeded on Watch library as "Coming soon"',
+        status:'brief' },
+      { id:'info-t2', pillar:'infotainment', theme:'Adoption',
+        title:'Pizza beats policy',
+        sub:'T2 · AI adoption spreads bottom-up, not by mandate',
+        notes:'Seeded on Watch library as "Coming soon"',
+        status:'brief' },
+      { id:'info-t3', pillar:'infotainment', theme:'Tactics',
+        title:'The 5pm habit',
+        sub:'T3 · what hi-leverage AI users actually do',
+        notes:'',
+        status:'brief' },
+      { id:'info-t4', pillar:'infotainment', theme:'Leadership',
+        title:'The CEO at the intern desk',
+        sub:'T4 · leaders who learn the tools themselves',
+        notes:'',
+        status:'brief' },
+      { id:'info-t5', pillar:'infotainment', theme:'Adoption',
+        title:'Shadow AI users',
+        sub:'T5 · what to do when staff are already using ChatGPT',
+        notes:'',
+        status:'brief' },
+      { id:'info-t6', pillar:'infotainment', theme:'Tactics',
+        title:'Three signs your AI rollout is dying',
+        sub:'T6 · early-warning indicators',
+        notes:'',
+        status:'backlog' },
+      { id:'info-t7', pillar:'infotainment', theme:'Strategy',
+        title:'AI strategy is a verb',
+        sub:'T7 · stop writing the deck, start running the loop',
+        notes:'',
+        status:'backlog' },
+      { id:'info-t8', pillar:'infotainment', theme:'Strategy',
+        title:'From AI pilot to AI product',
+        sub:'T8 · the operating-model step pilots skip',
+        notes:'',
+        status:'backlog' },
+      { id:'info-t9', pillar:'infotainment', theme:'Tactics',
+        title:'The single-workflow win',
+        sub:'T9 · find one process; ship the AI; show the receipts',
+        notes:'',
+        status:'backlog' },
+      { id:'info-t10', pillar:'infotainment', theme:'Leadership',
+        title:'Your best AI users sit furthest from leadership',
+        sub:'T10 · why power-users hide from the boss',
+        notes:'',
+        status:'backlog' },
+      { id:'info-t11', pillar:'infotainment', theme:'Leadership',
+        title:'The new AI org chart',
+        sub:'T11 · roles that exist now and didn\'t in 2023',
+        notes:'',
+        status:'backlog' },
+      { id:'info-t12', pillar:'infotainment', theme:'Strategy',
+        title:'Build vs buy — the year-2 rule',
+        sub:'T12 · the trade-off that flips after 12 months',
+        notes:'',
+        status:'backlog' },
+      { id:'info-t13', pillar:'infotainment', theme:'Risk',
+        title:'The 10× trap',
+        sub:'T13 · why "10× productivity" promises burn trust',
+        notes:'',
+        status:'backlog' },
+      { id:'info-t14', pillar:'infotainment', theme:'Adoption',
+        title:'AI maturity is behaviour, not budget',
+        sub:'T14 · what mature AI orgs actually do differently',
+        notes:'',
+        status:'backlog' },
+      // ── INFOTAINMENT — AI Update (daily news) ───────────────────
+      { id:'info-u-template', pillar:'infotainment', theme:'AI Update',
+        title:'AI Update — 60-second news template',
+        sub:'U-series · slot in the day\'s news at production time',
+        notes:'Daily cadence post-launch · source pool: TechCrunch AI, vendor release notes, HN AI',
+        status:'backlog' },
+      // ── INFOTAINMENT — Build-in-public (InvestAI arc) ───────────
+      { id:'info-ep1', pillar:'infotainment', theme:'Build-in-Public',
+        title:'Before the bot',
+        sub:'NYUKD InvestAI · EP01 — the founder problem',
+        notes:'Path-2 story arc opener · packet in Path2_Story_Arc/',
+        status:'backlog' },
+      { id:'info-ep2', pillar:'infotainment', theme:'Build-in-Public',
+        title:'The first conversation',
+        sub:'NYUKD InvestAI · EP02',
+        notes:'',
+        status:'backlog' },
+      { id:'info-ep3', pillar:'infotainment', theme:'Build-in-Public',
+        title:'Our first argument',
+        sub:'NYUKD InvestAI · EP03 — risk per trade',
+        notes:'',
+        status:'backlog' },
+
+      // ── INFOTAINMENT — Transformation futures (global / merit-based) ──
+      { id:'info-fut-2027office', pillar:'infotainment', theme:'Adoption',
+        title:'The 2027 office',
+        sub:'How AI redraws the white-collar job in 18 months',
+        notes:'EP_the_2027_office_DRAFT.mp4 · 49.5s · live on Watch library, pending Cloudflare deploy',
+        status:'weblive' },
+      { id:'info-fut-compliance', pillar:'infotainment', theme:'Risk',
+        title:'The compliance cliff',
+        sub:'EU AI Act + US frameworks · what enterprises actually do in year 1',
+        notes:'EU AI Act tiered obligations; US OMB / NIST AI RMF; sector-specific (FCA, SEC) overlays. Concrete checklist for global enterprises.',
+        status:'backlog' },
+      { id:'info-fut-aiNative', pillar:'infotainment', theme:'Strategy',
+        title:'AI-native vs AI-retrofit',
+        sub:'Why companies built AI-first beat incumbents by a factor',
+        notes:'Case studies: born-AI companies (e.g. Cursor, Perplexity-style) vs retrofit incumbents. Cost-to-serve, ops model, hiring shape.',
+        status:'backlog' },
+      { id:'info-fut-jcurve', pillar:'infotainment', theme:'Adoption',
+        title:'The AI productivity J-curve',
+        sub:'Why AI ROI lags before it leaps — and how to survive the dip',
+        notes:'Brynjolfsson "intangible capital" thesis; observed in cloud + ERP transitions; specific moves that shorten the J.',
+        status:'backlog' },
+      { id:'info-fut-sovereignAI', pillar:'infotainment', theme:'Strategy',
+        title:'Sovereign AI',
+        sub:'Countries building national AI capability — and why it shapes the next decade',
+        notes:'India IndiaAI Mission · UAE / Saudi · EU Gigafactories · UK AI Opportunities · US frontier-model compacts. Strategic framing for leaders.',
+        status:'backlog' },
+    ];
+
+    // ── State ────────────────────────────────────────────────────
+    function load() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      return JSON.parse(JSON.stringify(SEED));
+    }
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+    let state = load();
+    let currentFilter = 'all';
+
+    // ── Countdown ────────────────────────────────────────────────
+    function updateCountdown() {
+      const now = new Date();
+      const diffMs = LAUNCH - now;
+      const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      document.getElementById('daysLeft').textContent = days >= 0 ? days : `${Math.abs(days)} past`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 60_000);
+
+    // ── Render ───────────────────────────────────────────────────
+    function render() {
+      const board = document.getElementById('board');
+      board.innerHTML = '';
+      COLS.forEach(col => {
+        const colDiv = document.createElement('div');
+        colDiv.className = 'col';
+        colDiv.dataset.col = col.id;
+        const cardsInCol = state.filter(c =>
+          c.status === col.id && (currentFilter === 'all' || c.pillar === currentFilter)
+        );
+        colDiv.innerHTML = `
+          <h3>${col.name} <span class="col-count">${cardsInCol.length}</span></h3>
+        `;
+        cardsInCol.forEach(c => {
+          const card = document.createElement('article');
+          card.className = 'card';
+          card.draggable = true;
+          card.dataset.id = c.id;
+          card.innerHTML = `
+            <div class="card-actions">
+              <button class="icon-btn" data-del="${c.id}" title="Delete">×</button>
+            </div>
+            <div class="card-head">
+              <span class="pill ${c.pillar}">${c.pillar === 'entertainment' ? 'Entertainment' : 'Infotainment'}</span>
+              <span class="theme" data-t="${c.theme}">${c.theme}</span>
+            </div>
+            <div class="card-title">${esc(c.title)}</div>
+            ${c.sub ? `<div class="card-sub">${esc(c.sub)}</div>` : ''}
+            ${c.notes ? `<div class="card-notes">${esc(c.notes)}</div>` : ''}
+          `;
+          colDiv.appendChild(card);
+        });
+        const addBtn = document.createElement('button');
+        addBtn.className = 'add-btn';
+        addBtn.textContent = '＋ Add card';
+        addBtn.dataset.add = col.id;
+        colDiv.appendChild(addBtn);
+        board.appendChild(colDiv);
+      });
+      attachDnd();
+    }
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    }
+
+    // ── Drag and drop ────────────────────────────────────────────
+    let dragId = null;
+    function attachDnd() {
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('dragstart', e => {
+          dragId = card.dataset.id;
+          card.classList.add('dragging');
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        card.addEventListener('dragend', () => {
+          card.classList.remove('dragging');
+          document.querySelectorAll('.col').forEach(c => c.classList.remove('drag-over'));
+        });
+      });
+      document.querySelectorAll('.col').forEach(col => {
+        col.addEventListener('dragover', e => {
+          e.preventDefault();
+          col.classList.add('drag-over');
+        });
+        col.addEventListener('dragleave', () => col.classList.remove('drag-over'));
+        col.addEventListener('drop', e => {
+          e.preventDefault();
+          if (!dragId) return;
+          const card = state.find(c => c.id === dragId);
+          if (card) {
+            card.status = col.dataset.col;
+            save();
+            render();
+          }
+          dragId = null;
+        });
+      });
+    }
+
+    // ── Filters ──────────────────────────────────────────────────
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        render();
+      });
+    });
+
+    // ── Add / delete cards ───────────────────────────────────────
+    const modal = document.getElementById('modal');
+    let addingTo = null;
+    document.addEventListener('click', e => {
+      if (e.target.matches('[data-add]')) {
+        addingTo = e.target.dataset.add;
+        document.getElementById('m_title').value = '';
+        document.getElementById('m_sub').value = '';
+        document.getElementById('m_notes').value = '';
+        // default pillar/theme matches filter if active
+        document.getElementById('m_pillar').value =
+          currentFilter !== 'all' ? currentFilter : 'entertainment';
+        modal.classList.add('show');
+        setTimeout(() => document.getElementById('m_title').focus(), 30);
+      }
+      if (e.target.matches('[data-del]')) {
+        if (!confirm('Delete this card?')) return;
+        state = state.filter(c => c.id !== e.target.dataset.del);
+        save(); render();
+      }
+    });
+    document.getElementById('m_cancel').addEventListener('click', () => modal.classList.remove('show'));
+    document.getElementById('m_save').addEventListener('click', () => {
+      const title = document.getElementById('m_title').value.trim();
+      if (!title) return;
+      state.push({
+        id: 'c-' + Date.now().toString(36),
+        pillar: document.getElementById('m_pillar').value,
+        theme: document.getElementById('m_theme').value,
+        title,
+        sub: document.getElementById('m_sub').value.trim(),
+        notes: document.getElementById('m_notes').value.trim(),
+        status: addingTo || 'backlog',
+      });
+      save(); render();
+      modal.classList.remove('show');
+    });
+    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('show'); });
+
+    // ── Reset ────────────────────────────────────────────────────
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      if (!confirm('Reset the board to the seeded state? Your changes will be lost.')) return;
+      state = JSON.parse(JSON.stringify(SEED));
+      save(); render();
+    });
+
+    render();
+  </script>
+</body>
+</html>

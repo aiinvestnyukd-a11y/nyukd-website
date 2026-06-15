@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pipeline — Days to NYUKD.com go-live | NYUKD</title>
+    <meta
+      name="description"
+      content="One countdown to NYUKD.com go-live on 15 July 2026. Tracks across Invest, Infotainment, Entertainment, Gaming and Social, with the live kanban for each."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&f[]=jetbrains-mono@400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/app.css" />
+    <style>
+      /* Big single launch countdown — anchored under the hero. */
+      .launch {
+        margin-top: var(--space-7);
+        padding: var(--space-6) var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        position: relative;
+      }
+      .launch__head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--space-4);
+        flex-wrap: wrap;
+        margin-bottom: var(--space-5);
+      }
+      .launch__title {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+        margin: 0;
+      }
+      .launch__target {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        color: var(--color-text-faint);
+      }
+      .launch__digits {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-3);
+      }
+      .launch__group {
+        text-align: center;
+        padding: var(--space-3) 0;
+        background: var(--color-surface-2);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-divider);
+      }
+      .launch__num {
+        display: block;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(2.4rem, 1.8rem + 4vw, 5.5rem);
+        line-height: 0.95;
+        letter-spacing: -0.025em;
+        color: var(--color-primary);
+        font-variant-numeric: tabular-nums;
+      }
+      .launch__unit {
+        display: block;
+        margin-top: 0.6rem;
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--color-text-faint);
+      }
+      .launch.is-shipped .launch__num { color: var(--color-success); }
+      @media (max-width: 720px) {
+        .launch__digits { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      /* Vertical tracks — one row per practice, kanban link as the pill on the right. */
+      .tracks {
+        display: grid;
+        gap: var(--space-3);
+        margin-top: var(--space-6);
+      }
+      .track {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: var(--space-4);
+        align-items: center;
+        padding: var(--space-4) var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        transition: transform 0.15s, border-color 0.15s;
+      }
+      .track:hover { transform: translateY(-1px); border-color: var(--color-primary); }
+      .track__num {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.14em;
+        color: var(--color-text-faint);
+        text-transform: uppercase;
+        min-width: 4ch;
+      }
+      .track__body { display: flex; flex-direction: column; gap: 0.25rem; }
+      .track__name {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
+        letter-spacing: -0.005em;
+        margin: 0;
+      }
+      .track__desc {
+        color: var(--color-text-muted);
+        font-size: 0.88rem;
+        line-height: 1.5;
+        margin: 0;
+      }
+      .track__cta { white-space: nowrap; }
+      .track__cta.pill { text-decoration: none; }
+      .track__cta.pill:hover { filter: brightness(1.18); }
+      .track--soon { opacity: 0.7; border-style: dashed; }
+      .track--soon:hover { transform: none; }
+      @media (max-width: 720px) {
+        .track { grid-template-columns: 1fr; }
+        .track__cta { justify-self: start; }
+      }
+    </style>
+  </head>
+  <body>
+    <div data-slot="header"></div>
+
+    <main id="main">
+      <!-- ─────────────────────────── HERO ─────────────────────────── -->
+      <section class="page-hero">
+        <div class="container">
+          <div class="breadcrumb">
+            <a href="../index.html">NYUKD</a><span class="sep">/</span><span>Pipeline</span>
+          </div>
+          <div class="eyebrow">Practice — Pipeline</div>
+          <h1>
+            One countdown.<br />
+            All practices.<br />
+            <em style="color: var(--color-primary); font-style: normal;">Go-live: 15 July 2026.</em>
+          </h1>
+          <p class="lede">
+            A single shared launch date for nyukd.com. Each practice runs its own
+            kanban into it; the tracks below link to the live board for each.
+          </p>
+
+          <!-- ─── BIG LAUNCH COUNTDOWN ─── -->
+          <div id="launch" class="launch" data-target="2026-07-15T00:00:00Z">
+            <div class="launch__head">
+              <h2 class="launch__title">Days to NYUKD.com go-live</h2>
+              <span class="launch__target">Target · 15 July 2026</span>
+            </div>
+            <div class="launch__digits">
+              <div class="launch__group">
+                <span class="launch__num" data-unit="days">--</span>
+                <span class="launch__unit">days</span>
+              </div>
+              <div class="launch__group">
+                <span class="launch__num" data-unit="hours">--</span>
+                <span class="launch__unit">hours</span>
+              </div>
+              <div class="launch__group">
+                <span class="launch__num" data-unit="minutes">--</span>
+                <span class="launch__unit">minutes</span>
+              </div>
+              <div class="launch__group">
+                <span class="launch__num" data-unit="seconds">--</span>
+                <span class="launch__unit">seconds</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────── PRACTICE TRACKS ─────────────── -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Tracks</div>
+              <h2>One kanban per practice. All converging on the same date.</h2>
+            </div>
+            <p>
+              The boards below are the live working kanbans the team ships
+              against. Click through to see what's queued, in flight, and
+              shipped this week.
+            </p>
+          </div>
+
+          <div class="tracks">
+            <a class="track" href="kanbans/invest.html">
+              <span class="track__num">01</span>
+              <div class="track__body">
+                <h3 class="track__name">Invest — Automated Day Trading</h3>
+                <p class="track__desc">Four-strategy intraday platform, dashboard, picker and auto-tune. Live cutover in backlog.</p>
+              </div>
+              <span class="pill pill--accent track__cta">Open kanban →</span>
+            </a>
+
+            <a class="track" href="kanbans/launch.html">
+              <span class="track__num">02</span>
+              <div class="track__body">
+                <h3 class="track__name">Infotainment &amp; Entertainment</h3>
+                <p class="track__desc">Shared launch board across the COCOBear infotainment library and the entertainment lane — themes, episodes, distribution.</p>
+              </div>
+              <span class="pill pill--accent track__cta">Open kanban →</span>
+            </a>
+
+            <div class="track track--soon">
+              <span class="track__num">03</span>
+              <div class="track__body">
+                <h3 class="track__name">Gaming</h3>
+                <p class="track__desc">Three titles live (Cannon Dodge, NYUKD Maze, Lane Chase) plus The Realm in build. Kanban to be wired in shortly.</p>
+              </div>
+              <span class="pill track__cta">Kanban coming</span>
+            </div>
+
+            <div class="track track--soon">
+              <span class="track__num">04</span>
+              <div class="track__body">
+                <h3 class="track__name">Social</h3>
+                <p class="track__desc">Pathways for adults, institutions and kids. Board scoped, not yet wired in.</p>
+              </div>
+              <span class="pill track__cta">Kanban coming</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────── CTA ─────────────────────────── -->
+      <section class="section section--tight">
+        <div class="container">
+          <div class="coming-soon">
+            <div class="ticker">
+              <span class="pulse-dot" aria-hidden="true"></span>
+              SHARED DATE · ONE PIPELINE
+            </div>
+            <h2>Same date. Same discipline.</h2>
+            <p>
+              Every practice ships into the same launch window. The kanbans are
+              the working surface; the countdown is the deadline. The
+              operating model is on the
+              <a href="consulting.html" style="color: var(--color-primary);">consulting page</a>.
+            </p>
+            <div class="cta-row">
+              <a href="../index.html" class="btn btn--secondary">
+                Back to NYUKD <span class="arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-slot="footer"></div>
+
+    <script>
+      // Single launch countdown — refreshes every second; flips to "Shipped" once the date passes.
+      (function () {
+        const w = document.getElementById('launch');
+        if (!w) return;
+        const target = new Date(w.dataset.target).getTime();
+        const set = (u, v) => (w.querySelector('[data-unit="' + u + '"]').textContent = v);
+        function tick() {
+          const diff = target - Date.now();
+          if (diff <= 0) {
+            w.classList.add('is-shipped');
+            ['days', 'hours', 'minutes', 'seconds'].forEach((u) => set(u, '00'));
+            w.querySelector('.launch__title').textContent = 'Shipped';
+            return;
+          }
+          set('days', String(Math.floor(diff / 86400000)).padStart(2, '0'));
+          set('hours', String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0'));
+          set('minutes', String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0'));
+          set('seconds', String(Math.floor((diff % 60000) / 1000)).padStart(2, '0'));
+        }
+        tick();
+        setInterval(tick, 1000);
+      })();
+    </script>
+  
+    <script src="../js/partials.js"></script>
+    <script>window.NYUKD.mount({ base: "../", current: "pipeline" });</script>
+  </body>
+</html>

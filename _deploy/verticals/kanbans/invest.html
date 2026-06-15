@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Nyukd Kanban",
+  "schemaVersion": 1,
+  "description": "Kanban snapshot for NYUKD Invest — In Progress / Up Next (P0+P1) / Backlog (P2+P3+Deferred) + recently shipped list. Sourced from the live TaskList; refresh by asking Claude to update."
+}
+</script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NYUKD Invest — Kanban</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #FAFAFA;
+    color: #1A1A1A;
+    line-height: 1.4;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #E5E5E5;
+  }
+  .header h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .header .stamp {
+    font-size: 11px;
+    color: #777;
+  }
+  .summary {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stat {
+    flex: 1;
+    background: white;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .stat .label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.04em; }
+  .stat .value { font-size: 22px; font-weight: 600; margin-top: 4px; }
+  .stat.flowing .value { color: #0A7F3F; }
+  .stat.pending .value { color: #5A5A5A; }
+  .stat.shipped .value { color: #2563EB; }
+  .stat.live .value { color: #DC2626; }
+
+  .audit-banner {
+    background: #FFFBEB;
+    border: 1px solid #FCD34D;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: #92400E;
+  }
+  .audit-banner strong { font-weight: 700; }
+
+  .board {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  .col {
+    background: white;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    padding: 14px;
+    min-height: 200px;
+  }
+  .col-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .col-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1A1A1A;
+    letter-spacing: -0.005em;
+  }
+  .col-count {
+    font-size: 11px;
+    color: #999;
+    background: #F0F0F0;
+    border-radius: 10px;
+    padding: 1px 8px;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid #EBEBEB;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+  .card:hover { border-color: #C7C7C7; }
+  .card.live {
+    border-left: 3px solid #DC2626;
+    padding-left: 9px;
+  }
+  .card .id {
+    font-size: 10px;
+    color: #888;
+    font-variant-numeric: tabular-nums;
+    font-family: ui-monospace, "SF Mono", monospace;
+  }
+  .card .title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 3px;
+    color: #1F1F1F;
+    word-break: break-word;
+  }
+  .card .note {
+    font-size: 11px;
+    color: #777;
+    margin-top: 4px;
+    font-style: italic;
+  }
+  .card .meta {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .tag.p0  { background: #FEE2E2; color: #991B1B; }
+  .tag.p1  { background: #FEF3C7; color: #92400E; }
+  .tag.p2  { background: #DBEAFE; color: #1E40AF; }
+  .tag.p3  { background: #E5E7EB; color: #374151; }
+  .tag.def { background: #F3E8FF; color: #6B21A8; }
+  .tag.v2  { background: #DCFCE7; color: #166534; }
+  .tag.auth { background: #FFE4E6; color: #9F1239; }
+  .tag.sec  { background: #FEE2E2; color: #991B1B; }
+  .tag.ux  { background: #E0E7FF; color: #3730A3; }
+  .tag.live-tag { background: #DC2626; color: white; }
+  .tag.scope { background: #F0F0F0; color: #555; }
+  .tag.narrowed { background: #FEF3C7; color: #92400E; }
+
+  .shipped-section {
+    margin-top: 24px;
+    background: white;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .shipped-section h2 {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: #1A1A1A;
+  }
+  .shipped-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 18px;
+  }
+  .shipped-row {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+    color: #444;
+    padding: 4px 0;
+    border-bottom: 1px dashed #F0F0F0;
+  }
+  .shipped-row.audit { background: #ECFDF5; padding-left: 6px; border-radius: 3px; }
+  .shipped-row .id { color: #999; font-family: ui-monospace, "SF Mono", monospace; min-width: 38px; }
+  .shipped-row .badge {
+    font-size: 9px;
+    font-weight: 600;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: #DCFCE7;
+    color: #166534;
+    align-self: center;
+  }
+  .footer {
+    margin-top: 18px;
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>NYUKD Invest — Kanban</h1>
+  <span class="stamp">Snapshot · 2026-05-20 18:00 · post-audit + 3 minor closures</span>
+</div>
+
+<div class="audit-banner">
+  <strong>Audit pass + minor sweep</strong> · 2 moved to shipped (#150, #151) · 3 narrowed in scope (#57, #134, #149) · 3 minor backlog items closed today (#194 T&Cs clause, #227 auto-tuner int hardening, #229 prewarm/live log tag).</strong>
+</div>
+
+<div class="summary">
+  <div class="stat live">
+    <div class="label">In progress</div>
+    <div class="value">4</div>
+  </div>
+  <div class="stat pending">
+    <div class="label">Pending</div>
+    <div class="value">26</div>
+  </div>
+  <div class="stat shipped">
+    <div class="label">Shipped today</div>
+    <div class="value">16</div>
+  </div>
+  <div class="stat flowing">
+    <div class="label">Lifetime</div>
+    <div class="value">266</div>
+  </div>
+</div>
+
+<div class="board">
+
+  <!-- ────────── IN PROGRESS ────────── -->
+  <div class="col">
+    <div class="col-head">
+      <span class="col-title">🔴 In Progress</span>
+      <span class="col-count">4</span>
+    </div>
+
+    <div class="card live">
+      <div class="id">#1</div>
+      <div class="title">Delta — loosen "fully retraced" guard; let small-cap pullbacks reach READY</div>
+      <div class="meta">
+        <span class="tag live-tag">Live</span>
+        <span class="tag scope">Strategy</span>
+      </div>
+    </div>
+
+    <div class="card live">
+      <div class="id">#210</div>
+      <div class="title">V2 Phase 1.5 — AlpacaBrokerV2 + shadow-run harness (live shadow today)</div>
+      <div class="meta">
+        <span class="tag live-tag">Live</span>
+        <span class="tag v2">V2</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="id">#209</div>
+      <div class="title">V2 Phase 1 — contracts, journal, reconciliation, bot_core (code complete, 30/30 tests green)</div>
+      <div class="meta">
+        <span class="tag v2">V2</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="id">#208</div>
+      <div class="title">V2 Phase 0 — broker research (Alpaca rate limits, EOD lock, WebSocket shapes)</div>
+      <div class="meta">
+        <span class="tag v2">V2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────── UP NEXT ────────── -->
+  <div class="col">
+    <div class="col-head">
+      <span class="col-title">📋 Up Next (P0 / P1)</span>
+      <span class="col-count">11</span>
+    </div>
+
+    <div class="card">
+      <div class="id">#57</div>
+      <div class="title">F01 — Auth v2 polish: email verification + password reset + magic-link</div>
+      <div class="note">Scope narrowed — register / login / 7-day trial / billing already shipped (#79, #80, #82, #153). Remaining: verification email + reset flow + optional passwordless.</div>
+      <div class="meta">
+        <span class="tag p0">P0</span>
+        <span class="tag auth">Auth</span>
+        <span class="tag narrowed">Narrowed</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="id">#58</div>
+      <div class="title">F02 — User account linking + personal performance view</div>
+      <div class="meta"><span class="tag p0">P0</span><span class="tag auth">Auth</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#63</div>
+      <div class="title">F03 — Security hardening (OWASP audit + remediations)</div>
+      <div class="meta"><span class="tag p0">P0</span><span class="tag sec">Security</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#65</div>
+      <div class="title">F04 — Live vs Paper toggle in UI (per-bot)</div>
+      <div class="meta"><span class="tag p0">P0</span><span class="tag ux">UX</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#169</div>
+      <div class="title">F05 — BYOC wizard (Alpaca / eToro / IBKR guided setup)</div>
+      <div class="note">Form key-inputs in Hub already exist (#256); this is the full 5-step guided flow.</div>
+      <div class="meta"><span class="tag p0">P0</span><span class="tag scope">Onboard</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#61</div>
+      <div class="title">F06 — Market + Industry filters wired across Performance/Picker/Hub</div>
+      <div class="note">Placeholders exist (#113); this connects them to real data.</div>
+      <div class="meta"><span class="tag p1">P1</span><span class="tag ux">UX</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#71</div>
+      <div class="title">F07 — Multi-funnel landing site (persona-aware onboarding)</div>
+      <div class="meta"><span class="tag p1">P1</span><span class="tag scope">Marketing</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#148</div>
+      <div class="title">F08 — Reporting in Performance tab (tax-year CSV/PDF export)</div>
+      <div class="meta"><span class="tag p1">P1</span><span class="tag scope">Product</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#51</div>
+      <div class="title">F10 — Click trade → 5-min chart with entry/exit markers</div>
+      <div class="meta"><span class="tag p1">P1</span><span class="tag ux">UX</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#197</div>
+      <div class="title">F11 — Onboarding wizard (skill-routed by persona)</div>
+      <div class="meta"><span class="tag p1">P1</span><span class="tag scope">Onboard</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#198</div>
+      <div class="title">F12 — Learning modules (trading basics / leverage / tool)</div>
+      <div class="meta"><span class="tag p1">P1</span><span class="tag scope">Content</span></div>
+    </div>
+
+  </div>
+
+  <!-- ────────── BACKLOG ────────── -->
+  <div class="col">
+    <div class="col-head">
+      <span class="col-title">🗂 Backlog (P2 / P3 / Deferred)</span>
+      <span class="col-count">15</span>
+    </div>
+
+    <div class="card">
+      <div class="id">#149</div>
+      <div class="title">User-configurable slot labels in Hub UI (rename Alpha/Beta/etc.)</div>
+      <div class="note">Slot ↔ strategy decoupling done (#176); only the UI to rename slots remains.</div>
+      <div class="meta"><span class="tag p2">P2</span><span class="tag narrowed">Narrowed</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#134</div>
+      <div class="title">Premium news upgrade (Newsfilter / Marketaux integration)</div>
+      <div class="note">TradingView (#152) and Stripe (#153/#154/#161) already shipped. Only premium news feed remains.</div>
+      <div class="meta"><span class="tag p2">P2</span><span class="tag narrowed">Narrowed</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#195</div>
+      <div class="title">Deferred ID verification (Onfido / Sumsub) on first live-toggle</div>
+      <div class="meta"><span class="tag p2">P2</span><span class="tag scope">Compliance</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#178</div>
+      <div class="title">Native NYUKD community (forums / feed / DMs)</div>
+      <div class="meta"><span class="tag p2">P2</span><span class="tag scope">Community</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#243</div>
+      <div class="title">Maintain Alpha periodic-review tracker</div>
+      <div class="meta"><span class="tag p2">P2</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#279</div>
+      <div class="title">Hub Phase 11 — strategy versioning + audit trail</div>
+      <div class="meta"><span class="tag p2">P2</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#280</div>
+      <div class="title">Hub Phase 12 — visual graph drag-from-palette UX</div>
+      <div class="meta"><span class="tag p2">P2</span><span class="tag ux">UX</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#214</div>
+      <div class="title">Configuration tab spec — review before build</div>
+      <div class="meta"><span class="tag p2">P2</span><span class="tag scope">Config</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#237-242</div>
+      <div class="title">Research infra Phase 1-6 (backfill / ticks / backtest / WFA / MC)</div>
+      <div class="note">Spec (#236) shipped; 6 implementation phases pending.</div>
+      <div class="meta"><span class="tag p3">P3</span><span class="tag scope">Research</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#171</div>
+      <div class="title">SDK for technical users (pip-installable local strategies)</div>
+      <div class="meta"><span class="tag p3">P3</span><span class="tag scope">Platform</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#170</div>
+      <div class="title">Strategy Builder DSL — 50 strategies + configurable slots</div>
+      <div class="meta"><span class="tag def">Deferred</span><span class="tag v2">needs V2</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#196</div>
+      <div class="title">Wire DOB lock into trade attribution</div>
+      <div class="meta"><span class="tag def">Deferred</span><span class="tag scope">needs F02</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#226</div>
+      <div class="title">Risk — daily spend cap $2k across all bots</div>
+      <div class="meta"><span class="tag scope">Risk</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#228</div>
+      <div class="title">Delta — implement SHORT path (allow_short ignored)</div>
+      <div class="meta"><span class="tag scope">Strategy</span></div>
+    </div>
+
+    <div class="card">
+      <div class="id">#77 / #78</div>
+      <div class="title">eToro Delta — RTH smoke test + multi-day equity history</div>
+      <div class="meta"><span class="tag scope">Delta</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="shipped-section">
+  <h2>✅ Recently Shipped (last ~3 days + today's audit)</h2>
+  <div class="shipped-list">
+    <div class="shipped-row audit"><span class="id">#194</span><span>T&amp;Cs misrepresentation clause (Section 3, v1.1)</span><span class="badge">Today ✓</span></div>
+    <div class="shipped-row audit"><span class="id">#227</span><span>Auto-tuner int hardening (apply + revert paths, all 4 strategies)</span><span class="badge">Today ✓</span></div>
+    <div class="shipped-row audit"><span class="id">#229</span><span>Prewarm vs live log tag ([prewarm] / [live] filter, all 4 bots)</span><span class="badge">Today ✓</span></div>
+    <div class="shipped-row audit"><span class="id">#150</span><span>Strategy catalogue + tier-gated unlock</span><span class="badge">Audit ✓</span></div>
+    <div class="shipped-row audit"><span class="id">#151</span><span>Picker + Control Panel UX polish (#146 + #181 + #182)</span><span class="badge">Audit ✓</span></div>
+    <div class="shipped-row"><span class="id">#296</span><span>Project Collateral folder — full PMO doc pack</span></div>
+    <div class="shipped-row"><span class="id">#295</span><span>V2 Phase 1.5 — WebSocket fill stream wired</span></div>
+    <div class="shipped-row"><span class="id">#293</span><span>V2 shadow smoke test — first session row written</span></div>
+    <div class="shipped-row"><span class="id">#292</span><span>V2 — 30 unit tests passing on local venv</span></div>
+    <div class="shipped-row"><span class="id">#291</span><span>Dashboard Start Eq reads daily_baselines.jsonl</span></div>
+    <div class="shipped-row"><span class="id">#290</span><span>Alpha Start Eq drift root-cause ($1,510 over 11 days)</span></div>
+    <div class="shipped-row"><span class="id">#289</span><span>V1 restamp script — per-fill prices from activities</span></div>
+    <div class="shipped-row"><span class="id">#287</span><span>Alpha journal "duplicates" — confirmed legitimate multi-lot</span></div>
+    <div class="shipped-row"><span class="id">#286</span><span>Closed Positions panel 50-row cap raised to 500</span></div>
+    <div class="shipped-row"><span class="id">#284</span><span>Gamma unrealised P&L blank — env_prefix mismatch</span></div>
+    <div class="shipped-row"><span class="id">#283</span><span>Gamma dashboard 0/0 — missing logs block in config</span></div>
+    <div class="shipped-row"><span class="id">#281</span><span>Alpha not booking — RiskManager crash on None max_position_pct</span></div>
+    <div class="shipped-row"><span class="id">#2</span><span>V2 WebSocket _handler crash — _parse_iso hardened</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  Snapshot maintained by hand — refresh: ask Claude "update the kanban"<br>
+  Live source: Project Collateral / 04_Features_List · Test status: 08_Use_Cases_Test_Cases · Timeline: 09_Timeline_Status
+</div>
+
+</body>
+</html>

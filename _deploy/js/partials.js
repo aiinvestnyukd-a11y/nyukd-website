@@ -32,6 +32,21 @@
     const footerSlot = document.querySelector('[data-slot="footer"]');
     const isCurrent = (key) => (key === current ? ' aria-current="page"' : '');
 
+    // Per-page Explore routing (Bug #190). Pages not listed here fall through
+    // to the site home. Only the Invest app is external (opens a new tab).
+    const exploreMap = {
+      investment:    { href: `${INVEST_APP_BASE}/welcome`,                         external: true,  title: 'Explore NYUKD Invest' },
+      infotainment:  { href: `${base}verticals/infotainment.html#library-grid`,     external: false, title: 'Explore the Infotainment library' },
+      entertainment: { href: `${base}verticals/entertainment.html#library-grid`,    external: false, title: 'Explore the Entertainment library' },
+      consulting:    { href: `${base}verticals/consulting.html#projects`,           external: false, title: 'Explore the project repository' },
+      pipeline:      { href: `${base}verticals/pipeline.html`,                      external: false, title: 'Open the launch pipeline' },
+      gaming:        { href: `${base}verticals/gaming.html#catalogue`,              external: false, title: 'Explore the games catalogue' },
+    };
+    const explore     = exploreMap[current] || { href: `${base}index.html`, external: false, title: 'Explore NYUKD' };
+    const exploreHref = explore.href;
+    const exploreAttrs = explore.external ? ' target="_blank" rel="noopener"' : '';
+    const exploreTitle = explore.title;
+
     // Canonical NYUKD mark — rounded-corner box, zigzag N, primary-tint
     // dot in the bottom-right corner. Single source of truth lives in
     // dashboard.html (the product header); duplicated here so the
@@ -66,17 +81,21 @@
               <a href="${base}verticals/gaming.html"${isCurrent('gaming')}>Gaming</a>
               <a href="${base}verticals/social.html"${isCurrent('social')}>Social</a>
               <a href="${base}index.html#waitlist">Waitlist</a>
+              <a href="${base}verticals/pipeline.html"${isCurrent('pipeline')}>Pipeline</a>
             </nav>
             <div class="header-actions">
-              <!-- Bug #187 — header CTA was "Sign in", which felt narrow
-                   for a marketing site visited by people who may not
-                   even have an account yet. "Explore" is the right
-                   verb for "open the app and look around"; it sends
-                   them to /welcome (auto-forwards to /performance if
-                   they already have a session, shows landing CTAs
-                   otherwise). -->
-              <a class="header-launch" href="${INVEST_APP_BASE}/welcome" target="_blank" rel="noopener"
-                 title="Explore NYUKD Invest">
+              <!-- Bug #187 — header CTA was "Sign in", changed to "Explore".
+                   Bug #190 — Explore was hard-coded to the Invest app on
+                   every page, which only made sense on the Investment page.
+                   The button now routes per current page:
+                     investment    → Invest app /welcome (external)
+                     infotainment  → that page's library section
+                     entertainment → that page's library section
+                     consulting    → live engagements section on consulting.html
+                     anything else → site home
+                   target="_blank" is only set for the external Invest app. -->
+              <a class="header-launch" href="${exploreHref}"${exploreAttrs}
+                 title="${exploreTitle}">
                 <span class="header-launch__label">Explore</span>
                 <span class="header-launch__arrow" aria-hidden="true">→</span>
               </a>
@@ -109,6 +128,7 @@
                   <li><a href="${base}verticals/entertainment.html">Entertainment</a></li>
                   <li><a href="${base}verticals/gaming.html">Gaming</a></li>
                   <li><a href="${base}verticals/social.html">Social</a></li>
+                  <li><a href="${base}verticals/pipeline.html">Pipeline</a></li>
                 </ul>
               </div>
               <div class="footer-col">

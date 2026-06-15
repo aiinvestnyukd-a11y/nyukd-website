@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Nyukd Infotainment Kanban",
+  "schemaVersion": 1,
+  "description": "Live Kanban tracking NYUKD Infotainment activity across 6 phases. Now loaded with the full 28-brief launch-week pipeline: 14 Path 1 transformation videos (T1-T14, 2/day), 7 Daily AI Update templates (U1-U7, 1/day), 7 Path 2 launch story episodes (EP01-EP07). Drag cards through Themes → Backlog → Storyboard → Build → Test → Release."
+}
+</script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYUKD Infotainment — Kanban (COCOBear)</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f7f8fa;
+  color: #1a1d23;
+  font-size: 13px;
+  line-height: 1.4;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.title h1 {
+  font-size: 16px;
+  font-weight: 600;
+}
+.title .badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  background: #f0eaff;
+  color: #6d44d0;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+}
+.btn {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #1a1d23;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn:hover { background: #f3f4f6; border-color: #9ca3af; }
+.btn-primary {
+  background: #1a1d23;
+  color: #fff;
+  border-color: #1a1d23;
+}
+.btn-primary:hover { background: #2d3139; border-color: #2d3139; }
+.btn-danger {
+  color: #b42318;
+  border-color: #fda29b;
+  background: #fff;
+}
+.btn-danger:hover { background: #fef3f2; }
+
+/* Stats */
+.stats {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.stat {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 8px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6b7280;
+  font-weight: 600;
+}
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1d23;
+}
+
+/* Pending decisions */
+.decisions {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.decisions-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #92400e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.decisions-list {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.decision-chip {
+  background: #fff;
+  border: 1px solid #fde68a;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  color: #78350f;
+  font-weight: 500;
+}
+
+/* Board */
+.board {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(220px, 1fr));
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+.column {
+  background: #f0f1f4;
+  border-radius: 8px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e7eb;
+}
+.column.drag-over {
+  background: #e8eaf0;
+  border-color: #9ca3af;
+}
+.column-header {
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fafafb;
+  border-radius: 8px 8px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.column-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.column-title .phase-num {
+  background: #1a1d23;
+  color: #fff;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+.column-count {
+  background: #fff;
+  color: #6b7280;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-weight: 600;
+}
+.column-body {
+  padding: 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  max-height: calc(100vh - 280px);
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: grab;
+  transition: all 0.1s;
+  border-left: 3px solid #9ca3af;
+}
+.card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+.card.dragging { opacity: 0.4; cursor: grabbing; }
+.card-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.3;
+  color: #1a1d23;
+}
+.card-meta {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.chip {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 10px;
+  letter-spacing: 0.3px;
+}
+.chip-p1 { background: #dbeafe; color: #1e40af; }
+.chip-p2 { background: #f3e8ff; color: #6d28d9; }
+.chip-internal { background: #f3f4f6; color: #4b5563; }
+.chip-tag {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+}
+.chip-priority-high { background: #fee2e2; color: #b91c1c; }
+.chip-priority-med { background: #fef3c7; color: #92400e; }
+.card-description {
+  font-size: 11px;
+  color: #6b7280;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+.card-footer {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #9ca3af;
+}
+.card-actions {
+  display: flex;
+  gap: 4px;
+}
+.card-actions button {
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+.card-actions button:hover { background: #f3f4f6; color: #1a1d23; }
+
+/* Card border colors by path */
+.card[data-path="path1"] { border-left-color: #3b82f6; }
+.card[data-path="path2"] { border-left-color: #8b5cf6; }
+.card[data-path="internal"] { border-left-color: #6b7280; }
+
+/* Modal */
+.modal-bg {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-bg.active { display: flex; }
+.modal {
+  background: #fff;
+  border-radius: 10px;
+  max-width: 480px;
+  width: 100%;
+  padding: 20px;
+}
+.modal h2 {
+  font-size: 16px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.field {
+  margin-bottom: 12px;
+}
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.field input, .field textarea, .field select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+}
+.field textarea { resize: vertical; min-height: 60px; }
+.field input:focus, .field textarea:focus, .field select:focus {
+  outline: none;
+  border-color: #1a1d23;
+}
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+/* Empty state */
+.column-empty {
+  text-align: center;
+  padding: 30px 12px;
+  color: #9ca3af;
+  font-size: 11px;
+  font-style: italic;
+}
+
+/* Footer */
+.footer {
+  margin-top: 16px;
+  padding: 8px;
+  text-align: center;
+  font-size: 11px;
+  color: #9ca3af;
+}
+.footer .legend {
+  display: inline-flex;
+  gap: 14px;
+  align-items: center;
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="title">
+    <h1>NYUKD Infotainment — Kanban</h1>
+    <span class="badge">COCOBear</span>
+  </div>
+  <div class="actions">
+    <button class="btn" onclick="exportData()">Export JSON</button>
+    <button class="btn btn-danger" onclick="resetBoard()">Reset</button>
+    <button class="btn btn-primary" onclick="openAddModal()">+ Add card</button>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <span class="stat-label">Total cards</span>
+    <span class="stat-value" id="stat-total">0</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Path 1 (daily)</span>
+    <span class="stat-value" id="stat-p1">0</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Path 2 (story arc)</span>
+    <span class="stat-value" id="stat-p2">0</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">In progress</span>
+    <span class="stat-value" id="stat-progress">0</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Released</span>
+    <span class="stat-value" id="stat-released">0</span>
+  </div>
+</div>
+
+<div class="decisions">
+  <span class="decisions-label">Launch: Thu 14 May → Wed 20 May · Stack locked</span>
+  <div class="decisions-list">
+    <span class="decision-chip">Voice: Mixed (Nyukd P2 / ElevenLabs P1)</span>
+    <span class="decision-chip">Render: Google AI Studio (Veo 3)</span>
+    <span class="decision-chip">Stitch: CapCut Desktop</span>
+    <span class="decision-chip">Posting: Manual × 4 platforms</span>
+  </div>
+</div>
+
+<div class="board" id="board"></div>
+
+<div class="footer">
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot" style="background:#3b82f6"></span>Path 1 (daily AI-transformation)</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#8b5cf6"></span>Path 2 (launch story arc)</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#6b7280"></span>Internal</span>
+    <span class="legend-item">Drag cards between columns. Changes are saved locally.</span>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <h2 id="modal-title">Add card</h2>
+    <div class="field">
+      <label>Title</label>
+      <input type="text" id="card-title" placeholder="e.g. EP02 — The first conversation">
+    </div>
+    <div class="field">
+      <label>Path</label>
+      <select id="card-path">
+        <option value="path1">Path 1 — Daily AI-transformation</option>
+        <option value="path2">Path 2 — Launch story arc</option>
+        <option value="internal">Internal</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Tags (comma separated)</label>
+      <input type="text" id="card-tags" placeholder="e.g. EP02, Storyboard, High priority">
+    </div>
+    <div class="field">
+      <label>Description (optional)</label>
+      <textarea id="card-description" placeholder="Notes, file links, blockers..."></textarea>
+    </div>
+    <div class="field">
+      <label>Column</label>
+      <select id="card-column">
+        <option value="themes">Approved Themes</option>
+        <option value="backlog">Backlog</option>
+        <option value="storyboard">Storyboard</option>
+        <option value="build">Build</option>
+        <option value="test">Test</option>
+        <option value="release">Release</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveCard()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'nyukd_kanban_v2';
+
+const COLUMNS = [
+  { id: 'themes', title: 'Approved Themes', phaseNum: 1 },
+  { id: 'backlog', title: 'Backlog', phaseNum: 2 },
+  { id: 'storyboard', title: 'Storyboard', phaseNum: 3 },
+  { id: 'build', title: 'Build', phaseNum: 4 },
+  { id: 'test', title: 'Test', phaseNum: 5 },
+  { id: 'release', title: 'Release', phaseNum: 6 }
+];
+
+const PATH_LABELS = {
+  path1: 'P1',
+  path2: 'P2',
+  internal: 'INT'
+};
+
+const SEED_CARDS = [
+  // Approved Themes (4)
+  { id: 'th1', title: 'Path 1A/1B — Daily AI-transformation shorts', path: 'path1', tags: ['Recurring', '2 per day'], description: 'Two AI-adoption / transformation shorts every day. Drops 08:00 and 13:00 UK.', column: 'themes' },
+  { id: 'th2', title: 'Path 1C — Daily AI Update', path: 'path1', tags: ['Recurring', '1 per day'], description: 'Daily what-is-new-in-AI quick spotlight. Drops 17:00 UK. News slotted at production time.', column: 'themes' },
+  { id: 'th3', title: 'Path 2 — COCOBear x Nyukd launch story (7 eps)', path: 'path2', tags: ['Launch arc', 'Campaign'], description: 'Daily during launch week. After week 1, drops 2x/week.', column: 'themes' },
+  { id: 'th4', title: 'Weekly status reporting', path: 'internal', tags: ['Recurring', 'Friday'], description: 'COCOBear generates weekly platform engagement + content learnings report each Friday.', column: 'themes' },
+
+  // Backlog — Path 1A/1B Transformation videos (14)
+  { id: 't1', title: 'T1 — The 60% problem', path: 'path1', tags: ['Thu 14 May', '08:00', 'Brief locked'], description: 'AI pilot-to-production gap. One-workflow-30-days fix.', column: 'backlog' },
+  { id: 't2', title: 'T2 — Pizza beats policy', path: 'path1', tags: ['Thu 14 May', '13:00', 'Brief locked'], description: 'Mandatory training (70% no-show) vs optional peer demos.', column: 'backlog' },
+  { id: 't3', title: 'T3 — The 5pm habit', path: 'path1', tags: ['Fri 15 May', '08:00', 'Brief locked'], description: 'Daily prompt drops in team chat at 5pm.', column: 'backlog' },
+  { id: 't4', title: 'T4 — The CEO at the intern desk', path: 'path1', tags: ['Fri 15 May', '13:00', 'Brief locked'], description: 'Fortune 500 CEO learns AI by sitting next to interns for 8 Fridays.', column: 'backlog' },
+  { id: 't5', title: 'T5 — Your shadow AI users', path: 'path1', tags: ['Sat 16 May', '08:00', 'Brief locked'], description: '60–75% of teams use AI; policies say 0%. Surface them, build curriculum.', column: 'backlog' },
+  { id: 't6', title: 'T6 — Three signs your AI rollout is dying', path: 'path1', tags: ['Sat 16 May', '13:00', 'Brief locked'], description: 'Bottleneck lead, one-use-case wins, no measurable goals. Three fixes.', column: 'backlog' },
+  { id: 't7', title: 'T7 — AI strategy is a verb', path: 'path1', tags: ['Sun 17 May', '08:00', 'Brief locked'], description: 'Two-week cycles beat two-quarter strategy docs.', column: 'backlog' },
+  { id: 't8', title: 'T8 — From AI pilot to AI product', path: 'path1', tags: ['Sun 17 May', '13:00', 'Brief locked'], description: 'Owner, threshold, cell — three commitments before the pilot runs.', column: 'backlog' },
+  { id: 't9', title: 'T9 — The single-workflow win', path: 'path1', tags: ['Mon 18 May', '08:00', 'Brief locked'], description: 'Logistics company saves 200 hrs/week by rewriting one workflow.', column: 'backlog' },
+  { id: 't10', title: 'T10 — Best AI users sit furthest from leadership', path: 'path1', tags: ['Mon 18 May', '13:00', 'Brief locked'], description: 'Heaviest AI users are 3–4 levels down. Bring them into leadership review.', column: 'backlog' },
+  { id: 't11', title: 'T11 — The new AI org chart', path: 'path1', tags: ['Tue 19 May', '08:00', 'Brief locked'], description: 'Middle management as decision filters, not translators.', column: 'backlog' },
+  { id: 't12', title: 'T12 — Build vs buy: year-2 rule', path: 'path1', tags: ['Tue 19 May', '13:00', 'Brief locked'], description: 'Buy commodity, build differentiation. Buy the kitchen. Build the recipe.', column: 'backlog' },
+  { id: 't13', title: 'T13 — The 10x trap', path: 'path1', tags: ['Wed 20 May', '08:00', 'Brief locked'], description: 'AI multiplies what you already have — skill, taste, judgement.', column: 'backlog' },
+  { id: 't14', title: 'T14 — AI maturity is behavior', path: 'path1', tags: ['Wed 20 May', '13:00', 'Brief locked'], description: 'Score is comforting. Behavior is everything. Watch, don\'t measure.', column: 'backlog' },
+
+  // Backlog — Path 1C Daily AI Update templates (7)
+  { id: 'u1', title: 'U1 — Today in AI (60 sec)', path: 'path1', tags: ['Thu 14 May', '17:00', 'Template'], description: 'Daily news roundup template. Slot in 3 stories at production time.', column: 'backlog' },
+  { id: 'u2', title: 'U2 — Tool of the day', path: 'path1', tags: ['Fri 15 May', '17:00', 'Template'], description: 'Single AI tool spotlight — use case, setup time, honest caveat.', column: 'backlog' },
+  { id: 'u3', title: 'U3 — Model drop, what changed', path: 'path1', tags: ['Sat 16 May', '17:00', 'Template'], description: 'Vendor claim vs honest read on a recent model release.', column: 'backlog' },
+  { id: 'u4', title: 'U4 — Real test', path: 'path1', tags: ['Sun 17 May', '17:00', 'Template'], description: 'First-person test of an AI tool on a real knowledge-work task.', column: 'backlog' },
+  { id: 'u5', title: 'U5 — Monday top 3', path: 'path1', tags: ['Mon 18 May', '17:00', 'Template'], description: 'Three AI stories from the weekend that will shape the week.', column: 'backlog' },
+  { id: 'u6', title: 'U6 — AI for your role', path: 'path1', tags: ['Tue 19 May', '17:00', 'Template'], description: 'Role-specific AI quick tip — one prompt, one task, one caveat.', column: 'backlog' },
+  { id: 'u7', title: 'U7 — What just shipped', path: 'path1', tags: ['Wed 20 May', '17:00', 'Template'], description: '24h product launch recap, then pick the one that matters.', column: 'backlog' },
+
+  // Backlog — Path 2 episodes (7)
+  { id: 'e1', title: 'EP01 — Before the bot', path: 'path2', tags: ['Thu 14 May', '19:00', 'Brief locked'], description: 'Founder problem. 02:47 AM cold open. Sets up the story.', column: 'backlog' },
+  { id: 'e2', title: 'EP02 — The first conversation', path: 'path2', tags: ['Fri 15 May', '19:00', 'Brief locked'], description: 'Meeting COCOBear. Expected templates, got interviewed.', column: 'backlog' },
+  { id: 'e3', title: 'EP03 — Our first argument', path: 'path2', tags: ['Sat 16 May', '19:00', 'Brief locked'], description: 'Risk per trade — 5% vs 1%. The bot wins on the math.', column: 'backlog' },
+  { id: 'e4', title: 'EP04 — Why four strategies', path: 'path2', tags: ['Sun 17 May', '19:00', 'Brief locked'], description: 'Naming Alpha, Beta, Gamma, Delta. Team beats hero.', column: 'backlog' },
+  { id: 'e5', title: 'EP05 — The build week', path: 'path2', tags: ['Mon 18 May', '19:00', 'Brief locked'], description: 'Eight weeks. Two brokers. Reconciler. One dashboard.', column: 'backlog' },
+  { id: 'e6', title: 'EP06 — What it actually does', path: 'path2', tags: ['Tue 19 May', '19:00', 'Brief locked'], description: 'Product reveal. Live dashboard tour. Three tabs.', column: 'backlog' },
+  { id: 'e7', title: 'EP07 — Join the journey (LAUNCH FINALE)', path: 'path2', tags: ['Wed 20 May', '17:00', 'Launch', 'Brief locked'], description: 'Launch day. Open the door. CTA. Mirror EP01 closing shot.', column: 'backlog' }
+];
+
+let state = { cards: [] };
+let editingId = null;
+
+function load() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      state = JSON.parse(stored);
+    } else {
+      state.cards = [...SEED_CARDS];
+      save();
+    }
+  } catch (e) {
+    state.cards = [...SEED_CARDS];
+  }
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function render() {
+  const board = document.getElementById('board');
+  board.innerHTML = '';
+  COLUMNS.forEach(col => {
+    const cards = state.cards.filter(c => c.column === col.id);
+    const colEl = document.createElement('div');
+    colEl.className = 'column';
+    colEl.dataset.column = col.id;
+    colEl.innerHTML = `
+      <div class="column-header">
+        <div class="column-title">
+          <span class="phase-num">${col.phaseNum}</span>
+          ${col.title}
+        </div>
+        <span class="column-count">${cards.length}</span>
+      </div>
+      <div class="column-body"></div>
+    `;
+    const body = colEl.querySelector('.column-body');
+    if (cards.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'column-empty';
+      empty.textContent = '—';
+      body.appendChild(empty);
+    } else {
+      cards.forEach(card => body.appendChild(renderCard(card)));
+    }
+    // Drop handlers
+    colEl.addEventListener('dragover', e => {
+      e.preventDefault();
+      colEl.classList.add('drag-over');
+    });
+    colEl.addEventListener('dragleave', () => colEl.classList.remove('drag-over'));
+    colEl.addEventListener('drop', e => {
+      e.preventDefault();
+      colEl.classList.remove('drag-over');
+      const id = e.dataTransfer.getData('text/plain');
+      const card = state.cards.find(c => c.id === id);
+      if (card && card.column !== col.id) {
+        card.column = col.id;
+        save();
+        render();
+      }
+    });
+    board.appendChild(colEl);
+  });
+  updateStats();
+}
+
+function renderCard(card) {
+  const el = document.createElement('div');
+  el.className = 'card';
+  el.draggable = true;
+  el.dataset.path = card.path;
+  el.dataset.id = card.id;
+  const tags = (card.tags || []).map(t => `<span class="chip chip-tag">${escapeHtml(t)}</span>`).join('');
+  el.innerHTML = `
+    <div class="card-title">${escapeHtml(card.title)}</div>
+    <div class="card-meta">
+      <span class="chip chip-${card.path}">${PATH_LABELS[card.path] || 'INT'}</span>
+      ${tags}
+    </div>
+    ${card.description ? `<div class="card-description">${escapeHtml(card.description)}</div>` : ''}
+    <div class="card-footer">
+      <span>id: ${card.id}</span>
+      <div class="card-actions">
+        <button title="Edit" onclick="openEditModal('${card.id}')">✎</button>
+        <button title="Delete" onclick="deleteCard('${card.id}')">×</button>
+      </div>
+    </div>
+  `;
+  el.addEventListener('dragstart', e => {
+    el.classList.add('dragging');
+    e.dataTransfer.setData('text/plain', card.id);
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  el.addEventListener('dragend', () => el.classList.remove('dragging'));
+  return el;
+}
+
+function updateStats() {
+  document.getElementById('stat-total').textContent = state.cards.length;
+  document.getElementById('stat-p1').textContent = state.cards.filter(c => c.path === 'path1').length;
+  document.getElementById('stat-p2').textContent = state.cards.filter(c => c.path === 'path2').length;
+  document.getElementById('stat-progress').textContent = state.cards.filter(c => ['storyboard', 'build', 'test'].includes(c.column)).length;
+  document.getElementById('stat-released').textContent = state.cards.filter(c => c.column === 'release').length;
+}
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function openAddModal() {
+  editingId = null;
+  document.getElementById('modal-title').textContent = 'Add card';
+  document.getElementById('card-title').value = '';
+  document.getElementById('card-path').value = 'path1';
+  document.getElementById('card-tags').value = '';
+  document.getElementById('card-description').value = '';
+  document.getElementById('card-column').value = 'backlog';
+  document.getElementById('modal-bg').classList.add('active');
+}
+
+function openEditModal(id) {
+  const card = state.cards.find(c => c.id === id);
+  if (!card) return;
+  editingId = id;
+  document.getElementById('modal-title').textContent = 'Edit card';
+  document.getElementById('card-title').value = card.title;
+  document.getElementById('card-path').value = card.path;
+  document.getElementById('card-tags').value = (card.tags || []).join(', ');
+  document.getElementById('card-description').value = card.description || '';
+  document.getElementById('card-column').value = card.column;
+  document.getElementById('modal-bg').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('modal-bg').classList.remove('active');
+  editingId = null;
+}
+
+function saveCard() {
+  const title = document.getElementById('card-title').value.trim();
+  if (!title) return;
+  const path = document.getElementById('card-path').value;
+  const tagsStr = document.getElementById('card-tags').value.trim();
+  const tags = tagsStr ? tagsStr.split(',').map(t => t.trim()).filter(Boolean) : [];
+  const description = document.getElementById('card-description').value.trim();
+  const column = document.getElementById('card-column').value;
+  if (editingId) {
+    const card = state.cards.find(c => c.id === editingId);
+    if (card) { card.title = title; card.path = path; card.tags = tags; card.description = description; card.column = column; }
+  } else {
+    const id = 'c' + Date.now();
+    state.cards.push({ id, title, path, tags, description, column });
+  }
+  save();
+  closeModal();
+  render();
+}
+
+function deleteCard(id) {
+  if (!confirm('Delete this card?')) return;
+  state.cards = state.cards.filter(c => c.id !== id);
+  save();
+  render();
+}
+
+function resetBoard() {
+  if (!confirm('Reset the board to the seeded state? Your local changes will be lost.')) return;
+  state.cards = [...SEED_CARDS];
+  save();
+  render();
+}
+
+function exportData() {
+  const data = JSON.stringify(state, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'nyukd_kanban_export.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// Close modal when clicking outside
+document.getElementById('modal-bg').addEventListener('click', e => {
+  if (e.target.id === 'modal-bg') closeModal();
+});
+
+load();
+render();
+</script>
+</body>
+</html>
