@@ -5,7 +5,7 @@
   // production mirror is maintained in _deploy/ (under 100 MiB total, largest
   // file ~21 MiB), so we point the assets directory at that folder.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "nyukd-website-auto",
+  "name": "nyukd-website",
   "compatibility_date": "2026-06-15",
   "assets": {
     "directory": "./_deploy",
