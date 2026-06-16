@@ -24,156 +24,46 @@
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/app.css" />
     <style>
-      /* Launch countdown banner — sits above the hero on the homepage.
-         Counts down to NYUKD.com go-live (15 July 2026). Links to the
-         pipeline page where the per-practice kanbans live. */
-      .launch-banner {
-        background: linear-gradient(
-          90deg,
-          color-mix(in srgb, var(--color-primary) 12%, var(--color-surface)) 0%,
-          var(--color-surface) 60%
-        );
-        border-bottom: 1px solid var(--color-border);
-        padding: var(--space-3) 0;
-      }
-      .launch-banner__inner {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        gap: var(--space-4);
+      /* Make the homepage hero fill exactly one viewport on every device.
+         The hero is a flex column centered vertically, with internal gaps
+         doing the spacing — no large block paddings. Content scales with
+         viewport via clamp(). The next section ("Six practical launch
+         tracks.") sits cleanly below the fold. */
+      .hero {
+        min-height: 100dvh;
+        min-height: 100vh;            /* fallback for browsers without dvh */
+        display: flex;
         align-items: center;
       }
-      .launch-banner__copy {
-        display: flex;
-        flex-direction: column;
-        gap: 0.15rem;
+      .hero__inner {
+        padding-block: clamp(var(--space-4), 3vh, var(--space-8));
+        width: 100%;
       }
-      .launch-banner__title {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-family: var(--font-mono);
-        font-size: 0.7rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--color-primary);
-        margin: 0;
+      .hero__title { font-size: clamp(2rem, 1rem + 3vw, 4rem); }
+      .hero__lede {
+        margin-top: var(--space-3);
+        font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
       }
-      .launch-banner__date {
-        font-family: var(--font-mono);
-        font-size: 0.65rem;
-        letter-spacing: 0.1em;
-        color: var(--color-text-faint);
-      }
-      .launch-banner__digits {
-        display: flex;
-        justify-content: center;
-        gap: var(--space-3);
-        font-variant-numeric: tabular-nums;
-      }
-      .launch-banner__group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-width: 48px;
-      }
-      .launch-banner__num {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
-        line-height: 1;
-        letter-spacing: -0.015em;
-        color: var(--color-primary);
-      }
-      .launch-banner__unit {
-        font-family: var(--font-mono);
-        font-size: 0.6rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--color-text-faint);
-        margin-top: 0.3rem;
-      }
-      .launch-banner__link {
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--color-primary);
-        text-decoration: none;
-        white-space: nowrap;
-      }
-      .launch-banner__link:hover { text-decoration: underline; }
-      .launch-banner.is-shipped .launch-banner__num { color: var(--color-success); }
-      @media (max-width: 720px) {
-        .launch-banner__inner { grid-template-columns: 1fr; text-align: center; }
-        .launch-banner__copy { align-items: center; }
-        .launch-banner__digits { justify-content: center; }
-      }
+      .hero__ctas { margin-top: var(--space-4); }
+      .hero__meta { margin-top: var(--space-6); }
+      /* Verticals section starts cleanly under the hero — no compounded
+         section + hero padding gap. */
+      .hero + .section { padding-block-start: clamp(var(--space-8), 6vw, var(--space-14)); }
+
+      /* Launch countdown — sits in the hero, top-right, on the same row as
+         the "NYUKD.com · Open rollout" eyebrow. No outline / no background;
+         the digits blend straight into the page. */
     </style>
   </head>
   <body>
     <a class="sr-only" href="#main">Skip to content</a>
 
-    <!-- HEADER -->
-    <header class="site-header">
-      <div class="container site-header__inner">
-        <a class="site-logo" href="/" aria-label="NYUKD home">
-          <svg
-            class="brand-mark"
-            width="32"
-            height="32"
-            viewBox="0 0 64 64"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="3"
-            aria-hidden="true"
-          >
-            <rect x="6" y="6" width="52" height="52" rx="4" />
-            <path d="M16 48 L16 16 L48 48 L48 16" />
-            <circle cx="48" cy="48" r="3.5" fill="var(--color-primary)" stroke="none" />
-          </svg>
-          <span class="wordmark">NY<span>U</span>KD</span>
-        </a>
-
-        <nav class="site-nav" data-site-nav aria-label="Primary">
-          <a href="verticals/investment.html">Investment</a>
-          <a href="verticals/infotainment.html">Infotainment</a>
-          <a href="verticals/consulting.html">Consulting</a>
-          <a href="verticals/entertainment.html">Entertainment</a>
-          <a href="verticals/gaming.html">Gaming</a>
-          <a href="verticals/social.html">Social</a>
-          <a href="#waitlist">Waitlist</a>
-        </nav>
-
-        <div class="header-actions">
-          <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme"></button>
-          <button class="menu-toggle" data-menu-toggle aria-label="Open menu" aria-expanded="false">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-          </button>
-        </div>
-      </div>
-    </header>
+    <!-- HEADER (canonical version injected by js/partials.js so the homepage
+         stays in sync with the vertical pages — canonical logo SVG + nav
+         including the Pipeline tab). -->
+    <div data-slot="header"></div>
 
     <main id="main">
-      <!-- LAUNCH COUNTDOWN -->
-      <section class="launch-banner" id="launch-banner" data-target="2026-07-15T00:00:00Z" aria-label="NYUKD.com go-live countdown">
-        <div class="container launch-banner__inner">
-          <div class="launch-banner__copy">
-            <span class="launch-banner__title">
-              <span class="status-dot" aria-hidden="true"></span>
-              NYUKD.com go-live
-            </span>
-            <span class="launch-banner__date">Target · 15 July 2026</span>
-          </div>
-          <div class="launch-banner__digits">
-            <span class="launch-banner__group"><span class="launch-banner__num" data-unit="days">--</span><span class="launch-banner__unit">days</span></span>
-            <span class="launch-banner__group"><span class="launch-banner__num" data-unit="hours">--</span><span class="launch-banner__unit">hrs</span></span>
-            <span class="launch-banner__group"><span class="launch-banner__num" data-unit="minutes">--</span><span class="launch-banner__unit">min</span></span>
-            <span class="launch-banner__group"><span class="launch-banner__num" data-unit="seconds">--</span><span class="launch-banner__unit">sec</span></span>
-          </div>
-          <a class="launch-banner__link" href="verticals/pipeline.html">See the pipeline →</a>
-        </div>
-      </section>
-
       <!-- HERO -->
       <section class="hero">
         <div class="container hero__inner">
@@ -473,58 +363,12 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="container">
-        <div class="site-footer__top">
-          <div class="footer-col">
-            <a class="site-logo" href="/" aria-label="NYUKD home">
-              <svg width="28" height="28" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
-                <rect x="6" y="6" width="52" height="52" rx="4"/>
-                <path d="M16 48 L16 16 L48 48 L48 16"/>
-                <circle cx="48" cy="48" r="3.5" fill="var(--color-primary)" stroke="none"/>
-              </svg>
-              <span class="wordmark">NY<span>U</span>KD</span>
-            </a>
-            <p style="margin-top: var(--space-4); color: var(--color-text-muted); font-size: var(--text-sm); max-width: 36ch;">
-              Practical ventures built in the open, with AI where it makes the work better.
-            </p>
-          </div>
-          <div class="footer-col">
-            <h4>Practices</h4>
-            <ul>
-              <li><a href="verticals/investment.html">Investment</a></li>
-              <li><a href="verticals/infotainment.html">Infotainment</a></li>
-              <li><a href="verticals/consulting.html">Consulting</a></li>
-              <li><a href="verticals/entertainment.html">Entertainment</a></li>
-              <li><a href="verticals/gaming.html">Gaming</a></li>
-              <li><a href="verticals/social.html">Social</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Company</h4>
-            <ul>
-              <li><a href="#roadmap">Roadmap</a></li>
-              <li><a href="#waitlist">Waitlist</a></li>
-              <li><a href="mailto:hello@nyukd.com">hello@nyukd.com</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Legal</h4>
-            <ul>
-              <li><a href="#">Privacy (coming)</a></li>
-              <li><a href="#">Terms (coming)</a></li>
-              <li><a href="#">Trust & safety</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="site-footer__bottom">
-          <span>© <span class="tabular">2025</span> NYUKD. All rights reserved.</span>
-          <span>NYUKD.com · Built deliberately.</span>
-        </div>
-      </div>
-    </footer>
+    <!-- FOOTER (canonical version injected by js/partials.js — same Practices
+         list as the vertical pages, including Pipeline). -->
+    <div data-slot="footer"></div>
 
+    <script src="js/partials.js"></script>
+    <script>window.NYUKD.mount({ base: '', current: 'home' });</script>
     <script src="js/app.js"></script>
   <script data-pplx-inline-edit>
 (function () {
@@ -851,33 +695,6 @@
 
     handleCaptureRequest(event);
   });
-})();
-
-// Launch countdown — drives the .launch-banner widget at the top of the page.
-(function () {
-  var w = document.getElementById('launch-banner');
-  if (!w) return;
-  var target = new Date(w.dataset.target).getTime();
-  function set(unit, value) {
-    var el = w.querySelector('[data-unit="' + unit + '"]');
-    if (el) el.textContent = value;
-  }
-  function tick() {
-    var diff = target - Date.now();
-    if (diff <= 0) {
-      w.classList.add('is-shipped');
-      ['days','hours','minutes','seconds'].forEach(function (u) { set(u, '00'); });
-      var t = w.querySelector('.launch-banner__title');
-      if (t) t.textContent = 'NYUKD.com is live';
-      return;
-    }
-    set('days',    String(Math.floor(diff / 86400000)).padStart(2, '0'));
-    set('hours',   String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0'));
-    set('minutes', String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0'));
-    set('seconds', String(Math.floor((diff % 60000) / 1000)).padStart(2, '0'));
-  }
-  tick();
-  setInterval(tick, 1000);
 })();
 
 </script></body>

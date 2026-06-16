@@ -41,6 +41,7 @@
       consulting:    { href: `${base}verticals/consulting.html#projects`,           external: false, title: 'Explore the project repository' },
       pipeline:      { href: `${base}verticals/pipeline.html`,                      external: false, title: 'Open the launch pipeline' },
       gaming:        { href: `${base}verticals/gaming.html#catalogue`,              external: false, title: 'Explore the games catalogue' },
+      home:          { href: `${base}index.html#verticals`,                         external: false, title: 'Explore the six launch tracks' },
     };
     const explore     = exploreMap[current] || { href: `${base}index.html`, external: false, title: 'Explore NYUKD' };
     const exploreHref = explore.href;
